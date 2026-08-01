@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System - Marek Jelínek Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-text: #1F1F1F;
+            --primary-bg: #F8F8F8;
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-light: #E6E6E6;
+            --gray-medium: #8C8C8C;
+            --gray-dark: #404040;
+        }
+
+        body {
+            font-family: Arial, Inter, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 76px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-text);
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: var(--primary-text);
+            border-bottom: 2px solid var(--gray-light);
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--primary-text);
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* BARVY */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .color-box {
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            color: var(--white);
+            font-weight: bold;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-box.light {
+            color: var(--primary-text);
+            border: 2px solid var(--gray-light);
+        }
+
+        .color-primary-text {
+            background-color: var(--primary-text);
+        }
+
+        .color-primary-bg {
+            background-color: var(--primary-bg);
+        }
+
+        .color-black {
+            background-color: var(--black);
+        }
+
+        .color-white {
+            background-color: var(--white);
+            border: 2px solid var(--gray-light);
+            color: var(--primary-text);
+        }
+
+        .color-gray-medium {
+            background-color: var(--gray-medium);
+        }
+
+        .color-gray-dark {
+            background-color: var(--gray-dark);
+        }
+
+        /* TYPOGRAFIE */
+        .typography-sample {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--primary-bg);
+            border-left: 4px solid var(--primary-text);
+            border-radius: 4px;
+        }
+
+        .typography-label {
+            font-size: 12px;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* KOMPONENTY */
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button-primary {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .button-primary:hover {
+            background-color: var(--gray-dark);
+        }
+
+        .button-secondary {
+            background-color: transparent;
+            color: var(--primary-text);
+            border: 2px solid var(--primary-text);
+        }
+
+        .button-secondary:hover {
+            background-color: var(--primary-bg);
+        }
+
+        .button-round {
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .component-card {
+            padding: 20px;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .component-card h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--primary-text);
+        }
+
+        /* LAYOUT */
+        .layout-demo {
+            border: 2px dashed var(--gray-medium);
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--primary-bg);
+            margin-bottom: 20px;
+        }
+
+        .layout-item {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray-medium);
+        }
+
+        .layout-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* RESPONSIVITA */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 48px;
+            }
+
+            h2 {
+                font-size: 36px;
+            }
+
+            h3 {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .meta-info {
+            font-size: 12px;
+            color: var(--gray-medium);
+            font-family: monospace;
+            background-color: var(--primary-bg);
+            padding: 10px;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>Design System</h1>
+            <p>Marek Jelínek - Portfolio UX/UI Designer</p>
+        </header>
+
+        <!-- BARVY -->
+        <section class="section">
+            <h2>🎨 Barvy</h2>
+            <div class="color-grid">
+                <div class="color-box color-primary-text">
+                    <div>Primární text</div>
+                    <div class="meta-info">#1F1F1F</div>
+                    <div class="meta-info">rgb(31, 31, 31)</div>
+                </div>
+                <div class="color-box color-primary-bg light">
+                    <div>Primární BG</div>
+                    <div class="meta-info">#F8F8F8</div>
+                    <div class="meta-info">rgb(248, 248, 248)</div>
+                </div>
+                <div class="color-box color-black">
+                    <div>Černá</div>
+                    <div class="meta-info">#000000</div>
+                    <div class="meta-info">rgb(0, 0, 0)</div>
+                </div>
+                <div class="color-box color-white light">
+                    <div>Bílá</div>
+                    <div class="meta-info">#FFFFFF</div>
+                    <div class="meta-info">rgb(255, 255, 255)</div>
+                </div>
+                <div class="color-box color-gray-medium">
+                    <div>Šedá medium</div>
+                    <div class="meta-info">#8C8C8C</div>
+                    <div class="meta-info">rgb(140, 140, 140)</div>
+                </div>
+                <div class="color-box color-gray-dark">
+                    <div>Šedá dark</div>
+                    <div class="meta-info">#404040</div>
+                    <div class="meta-info">rgb(64, 64, 64)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TYPOGRAFIE -->
+        <section class="section">
+            <h2>✍️ Typografie</h2>
+
+            <div class="typography-sample">
+                <div class="typography-label">H1 - Hlavní nadpis</div>
+                <h1>Redesignér</h1>
+                <div class="meta-info">Font: Arial, Inter | Velikost: 76px | Váha: bold</div>
+            </div>
+
+            <div class="typography-sample">
+                <div class="typography-label">H2 - Sekční nadpis</div>
+                <h2 style="border: none; padding: 0; margin: 0;">Vybrané práce</h2>
+                <div class="meta-info">Font: Arial, Inter | Velikost: 48px | Váha: bold</div>
+            </div>
+
+            <div class="typography-sample">
+                <div class="typography-label">H3 - Podnadpis</div>
+                <h3>Donio</h3>
+                <div class="meta-info">Font: Arial, Inter | Velikost: 32px | Váha: bold</div>
+            </div>
+
+            <div class="typography-sample">
+                <div class="typography-label">Odstavec - Běžný text</div>
+                <p>Zlepšuji UX webů a aplikací. Nejčastěji redesignem. Pomáhám firmám, aby zbytečně nepálily zdroje a stavěly věci, které reálně vydělávají.</p>
+                <div class="meta-info">Font: Arial, Inter | Velikost: 16px | Váha: regular</div>
+            </div>
+
+            <div class="typography-sample">
+                <div class="typography-label">Malý text (labels, meta)</div>
+                <small style="font-size: 12px;">UX/UI • Web app | 10+ let praxe | 2x zvýšení konverze</small>
+                <div class="meta-info">Font: Arial, Inter | Velikost: 12px | Váha: regular</div>
+            </div>
+        </section>
+
+        <!-- KOMPONENTY -->
+        <section class="section">
+            <h2>🧩 Komponenty</h2>
+
+            <h3>Tlačítka</h3>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h4>Primární tlačítko</h4>
+                    <button class="button button-primary">Konzultace</button>
+                    <div class="meta-info" style="margin-top: 15px;">Černé pozadí<br>Bílý text<br>Zaoblené rohy (border-radius: 24px)</div>
+                </div>
+                <div class="component-card">
+                    <h4>Sekundární tlačítko</h4>
+                    <button class="button button-secondary">Více info</button>
+                    <div class="meta-info" style="margin-top: 15px;">Transparentní BG<br>Border: 2px<br>Text barva</div>
+                </div>
+                <div class="component-card">
+                    <h4>Kruhové tlačítko (top)</h4>
+                    <button class="button button-primary button-round">↑</button>
+                    <div class="meta-info" style="margin-top: 15px;">Fixní pozice<br>Průměr: 50px<br>Ikonka: šipka nahoru</div>
+                </div>
+            </div>
+
+            <h3>Odkazy</h3>
+            <div class="component-card">
+                <p><a href="#" style="color: var(--primary-text); text-decoration: underline;">marker@seznam.cz</a> - Email odkaz</p>
+                <p><a href="#" style="color: var(--primary-text); text-decoration: underline;">LinkedIn</a> - Sociální odkaz</p>
+                <div class="meta-info">Barva: primární text (#1F1F1F)<br>Podtržení: ano<br>Hover: zmena barvy na šedou</div>
+            </div>
+
+            <h3>Kartičky projektů</h3>
+            <div class="component-grid">
+                <div class="component-card" style="border-left: 4px solid var(--black);">
+                    <h4>Projekt</h4>
+                    <p style="font-size: 12px; color: var(--gray-medium); margin-bottom: 10px;">UX/UI • Web app</p>
+                    <h4 style="font-size: 20px;">Donio</h4>
+                    <p>Zjednodušení zakládání sbírek a nový profil dárce.</p>
+                    <div class="meta-info">Typ: Content card<br>Viz obrázek: Img/Donio-S.png</div>
+                </div>
+                <div class="component-card" style="border-left: 4px solid var(--black);">
+                    <h4>Projekt</h4>
+                    <p style="font-size: 12px; color: var(--gray-medium); margin-bottom: 10px;">UX/UI • Web & Mobile</p>
+                    <h4 style="font-size: 20px;">RegioJet</h4>
+                    <p>Kompletní redesign webové a mobilní aplikace.</p>
+                    <div class="meta-info">Typ: Content card<br>Viz obrázky: Img/RegioJet-*.png</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROZESTUPY -->
+        <section class="section">
+            <h2>📏 Rozestupy</h2>
+            <div class="layout-demo">
+                <div class="layout-item">Sekce (gap: 30px)</div>
+                <div class="layout-item">Mezi prvky (padding: 20-40px)</div>
+                <div class="layout-item">Mezi texty (margin-bottom: 15px)</div>
+            </div>
+            <p><strong>CSS proměnná:</strong> <code style="background: var(--primary-bg); padding: 4px 8px; border-radius: 4px;">--container-gap: 30px</code></p>
+        </section>
+
+        <!-- LAYOUT -->
+        <section class="section">
+            <h2>🎯 Layout a struktura</h2>
+
+            <h3>Struktura stránky (desktop)</h3>
+            <div class="layout-demo">
+                <div class="layout-item" style="background-color: #E3F2FD; padding: 30px;">HEADER - Fixní navigace (Logo + Menu + Tlačítko)</div>
+                <div class="layout-item" style="background-color: #F3E5F5; padding: 60px;">HERO - Nadpis "Redesignér" + popis + fotka</div>
+                <div class="layout-item" style="background-color: #E8F5E9; padding: 40px;">STATISTIKY - 10+, 2x, 125 000+</div>
+                <div class="layout-item" style="background-color: #FFF3E0; padding: 60px;">PROJEKTY - Vybrané práce (Donio, RegioJet, Srovnávač)</div>
+                <div class="layout-item" style="background-color: #E0F2F1; padding: 40px;">OSTATNÍ PROJEKTY - Text s firmami</div>
+                <div class="layout-item" style="background-color: #F1F8E9; padding: 60px;">O MNĚ - Text + vzdělání</div>
+                <div class="layout-item" style="background-color: #FCE4EC; padding: 60px;">KONTAKT - Email + lokace + LinkedIn</div>
+                <div class="layout-item" style="background-color: #E0E0E0; padding: 20px;">FOOTER - Tlačítko scroll-to-top</div>
+            </div>
+
+            <h3>Responsivita</h3>
+            <ul style="margin-left: 20px;">
+                <li><strong>Desktop:</strong> Všechny prvky viditelné, menu horizontální</li>
+                <li><strong>Tablet:</strong> Menu → Hamburger menu, prvky se zmenší</li>
+                <li><strong>Mobile:</strong> Single column layout, hamburger menu s overlay</li>
+            </ul>
+
+            <h3>Hamburger menu</h3>
+            <p>Při kliknutí se otevře:</p>
+            <ul style="margin-left: 20px;">
+                <li>Overlay s černým pozadím (semi-transparent)</li>
+                <li>Položky menu: Projekty, O mně, Kontakt</li>
+                <li>Tlačítko "Konzultace"</li>
+                <li>Křížek (close button) v rohu</li>
+            </ul>
+        </section>
+
+        <!-- NAVIGACE -->
+        <section class="section">
+            <h2>🧭 Navigace</h2>
+            <div style="background-color: var(--primary-bg); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: bold; font-size: 18px;">Marek Jelínek</div>
+                    <div style="display: flex; gap: 30px; align-items: center;">
+                        <a href="#" style="text-decoration: none; color: var(--primary-text);">Projekty</a>
+                        <a href="#" style="text-decoration: none; color: var(--primary-text);">O mně</a>
+                        <a href="#" style="text-decoration: none; color: var(--primary-text);">Kontakt</a>
+                        <button class="button button-primary" style="margin: 0;">Konzultace</button>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-info">
+                ✓ Fixní pozice (top: 0)<br>
+                ✓ Roluje s uživatelem<br>
+                ✓ Na mobilech se změní na hamburger menu<br>
+                ✓ Logo = kliknutí → na úvod (#uvod)
+            </div>
+        </section>
+
+        <!-- SEO -->
+        <section class="section">
+            <h2>🔍 SEO & Meta tagy</h2>
+            <div class="meta-info">
+                <strong>&lt;title&gt;</strong><br>
+                "Marek Jelínek – UX & Product designer"<br><br>
+
+                <strong>&lt;meta name="description"&gt;</strong><br>
+                "Přes 10 let navrhuji a zlepšuji weby a aplikace. Nejčastěji dělám redesign, ale nabízím také UX audity a konzultace, výzkum a ověřování nápadů. Jednorázové projekty i dlouhodobá spolupráce."<br><br>
+
+                <strong>&lt;meta property="og:*"&gt;</strong><br>
+                - og:title, og:description, og:image, og:url, og:type<br><br>
+
+                <strong>&lt;meta name="twitter:*"&gt;</strong><br>
+                - twitter:title, twitter:description, twitter:image, twitter:card<br><br>
+
+                <strong>&lt;link rel="canonical"&gt;</strong><br>
+                https://marekjelinek.cz/<br><br>
+
+                <strong>&lt;meta name="viewport"&gt;</strong><br>
+                width=device-width, initial-scale=1
+            </div>
+        </section>
+
+        <!-- BUDOUCNOST -->
+        <section class="section">
+            <h2>🚀 Budoucí rozšíření</h2>
+            <ul style="margin-left: 20px;">
+                <li>Case study stránky pro jednotlivé projekty</li>
+                <li>Kalkulačka (JavaScript funkce)</li>
+                <li>Blog sekce</li>
+                <li>Dynamické filtry projektů</li>
+                <li>Newsletter signup</li>
+                <li>Formulář pro kontakt (místo mailu)</li>
+            </ul>
+        </section>
+
+    </div>
+</body>
+</html>

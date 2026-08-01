@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Marek Jelínek – UX & Product designer">
+    <meta name="description" content="Přes 10 let navrhuji a zlepšuji weby a aplikace. Nejčastěji dělám redesign, ale nabízím také UX audity a konzultace, výzkum a ověřování nápadů. Jednorázové projekty i dlouhodobá spolupráce.">
+
+    <meta property="og:title" content="Marek Jelínek – Web & App designer">
+    <meta property="og:description" content="I design websites and apps for clients, that are looking for new ways in the digital experience.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://marekjelinek.cz/">
+
+    <meta name="twitter:title" content="Marek Jelínek – Web & App designer">
+    <meta name="twitter:description" content="I design websites and apps for clients, that are looking for new ways in the digital experience.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="canonical" href="https://marekjelinek.cz/">
+
+    <title>Marek Jelínek – UX & Product designer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-text: #1F1F1F;
+            --primary-bg: #F8F8F8;
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-light: #E6E6E6;
+            --gray-medium: #8C8C8C;
+            --container-gap: 30px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Inter, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            line-height: 1.6;
+        }
+
+        /* HEADER / NAVIGACE */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: transparent;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: normal;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-text);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gray-medium);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--black);
+        }
+
+        /* HAMBURGER - SCHOVÁ SE PŘI OTEVŘENÉM MENU (zavírá se pomocí .close-btn), bez animace */
+        .hamburger.active {
+            display: none;
+        }
+
+        /* MOBILE MENU OVERLAY */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--primary-text);
+            z-index: 1001;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 24px;
+            margin: 20px 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gray-light);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 40px;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .mobile-menu .button {
+            margin-top: 30px;
+        }
+
+        /* TLAČÍTKA */
+        .button {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: normal;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button-primary {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .button-primary:hover {
+            background-color: var(--gray-medium);
+        }
+
+        /* Varianta tlačítka pro použití na tmavém/černém pozadí */
+        .button-on-dark {
+            background-color: var(--white);
+            color: var(--primary-text);
+        }
+
+        .button-on-dark:hover {
+            background-color: var(--gray-light);
+        }
+
+        .button-round {
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+            background-color: var(--white);
+            color: var(--primary-text);
+        }
+
+        .button-round:hover {
+            background-color: var(--gray-light);
+        }
+
+        /* MAIN CONTENT */
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* SEKCE */
+        section {
+            padding: 60px 0;
+        }
+
+        /* TYPOGRAFIE */
+        h1 {
+            font-size: 76px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 70px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        small {
+            font-size: 20px;
+            color: var(--gray-medium);
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        a {
+            color: var(--primary-text);
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--gray-medium);
+        }
+
+        /* HERO SEKCE */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 76px;
+            text-align: center;
+        }
+
+        .hero-content p {
+            font-size: 25px;
+            margin-bottom: 40px;
+            color: var(--primary-text);
+        }
+
+        .hero-image {
+            width: 460px;
+            max-width: 100%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 580px;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        /* STATISTIKY */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 70px;
+            font-weight: bold;
+            color: var(--black);
+            margin-bottom: 10px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .stat-text {
+            font-size: 20px;
+            color: var(--primary-text);
+        }
+
+        /* PROJEKTY */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .project:nth-child(even) {
+            direction: rtl;
+        }
+
+        .project:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .project-content small {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .project-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0;
+        }
+
+        .project-content p {
+            font-size: 20px;
+        }
+
+        /* O MNĚ */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 20px;
+        }
+
+        /* KONTAKT */
+        #kontakt {
+            background-color: var(--primary-text);
+            color: var(--white);
+        }
+
+        #kontakt h2 {
+            color: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-item p {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .contact-item a {
+            color: var(--white);
+        }
+
+        /* SCROLL TO TOP V KONTAKTNÍ SEKCI */
+        .kontakt-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 60px;
+        }
+
+        /* RESPONSIVITA */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            main {
+                margin-top: 70px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            h2 {
+                font-size: 45px;
+            }
+
+            h3 {
+                font-size: 30px;
+            }
+
+            .intro-text {
+                font-size: 30px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .project {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .project:nth-child(even) {
+                direction: ltr;
+            }
+
+            .project-image {
+                order: -1;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .kontakt-footer {
+                justify-content: center;
+                margin-top: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 45px;
+            }
+
+            h3 {
+                font-size: 30px;
+            }
+
+            .button {
+                padding: 10px 24px;
+                font-size: 14px;
+            }
+
+            section {
+                padding: 30px 0;
+            }
+
+            .mobile-menu a {
+                font-size: 18px;
+            }
+        }
+
+        /* INTRO TEXT */
+        .intro-text {
+            font-size: 40px;
+            font-weight: normal;
+            color: var(--primary-text);
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin: 0 auto 40px;
+        }
+
+        .other-projects-label {
+            font-size: 16px;
+            color: var(--primary-text);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .other-projects {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .other-projects p {
+            font-size: 30px;
+            font-weight: normal;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .other-projects strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER / NAVIGACE -->
+    <header>
+        <div class="logo" onclick="document.getElementById('uvod').scrollIntoView()">Marek Jelínek</div>
+
+        <nav>
+            <a href="#projekty">Projekty</a>
+            <a href="#info">O mně</a>
+            <a href="#kontakt">Kontakt</a>
+            <button class="button button-primary" onclick="document.getElementById('kontakt').scrollIntoView()">Konzultace</button>
+        </nav>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <a href="#projekty">Projekty</a>
+        <a href="#info">O mně</a>
+        <a href="#kontakt">Kontakt</a>
+        <button class="button button-on-dark" onclick="document.getElementById('kontakt').scrollIntoView()">Konzultace</button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO / ÚVOD -->
+        <section id="uvod" class="hero-section">
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1>Redesignér</h1>
+                        <p>Zlepšuji UX webů a aplikací.<br>Nejčastěji redesignem.</p>
+                    </div>
+                    <div class="hero-image">
+                        <img src="Img/Marek.png" alt="Marek Jelínek - UX designer na volné noze">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATISTIKY A INTRO -->
+        <section>
+            <div class="container">
+                <p class="intro-text">Pomáhám firmám, aby zbytečně nepálily zdroje a stavěly věci, které reálně vydělávají</p>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-text">Let praxe v produktových týmech a digitálních agenturách</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2x</div>
+                        <div class="stat-text">Dosáhl jsem dvojnásobného zvýšení konverzního poměru na projektu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">125 000+</div>
+                        <div class="stat-text">Kč jsem ušetřil na projektu díky výzkumu</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJEKTY -->
+        <section id="projekty">
+            <div class="container">
+                <h2>Vybrané práce</h2>
+                <p class="intro-text">Starám se o celý proces designu od prvních nápadů až po návrh rozhraní</p>
+
+                <div class="projects-grid">
+                    <!-- Projekt 1: Donio -->
+                    <div class="project">
+                        <div class="project-content">
+                            <small>UX/UI • Web app</small>
+                            <h3>Donio</h3>
+                            <p>Zjednodušení zakládání sbírek a nový profil dárce, který vedl ke zvýšení počtu příspěvků.</p>
+                        </div>
+                        <div class="project-image">
+                            <img src="Img/Donio-S.png" alt="UX/UI redesign a vylepšení dárovské platformy">
+                        </div>
+                    </div>
+
+                    <!-- Projekt 2: RegioJet -->
+                    <div class="project">
+                        <div class="project-content">
+                            <small>UX/UI • Web & mobile app</small>
+                            <h3>RegioJet</h3>
+                            <p>Kompletní redesign webové a mobilní aplikace a zjednodušení nákupu jízdenek.</p>
+                        </div>
+                        <div class="project-image">
+                            <img src="Img/RegioJet-2S.png" alt="UX/UI redesign mobilní aplikace RegioJet">
+                        </div>
+                    </div>
+
+                    <!-- Projekt 3: Srovnávač dluhopisů -->
+                    <div class="project">
+                        <div class="project-content">
+                            <small>UX • Web</small>
+                            <h3>Srovnávač dluhopisů</h3>
+                            <p>Optimalizace portálu, přehlednější prezentace dluhopisů a zvýšení poptávek.<br><br>(Klient agentury DesignDev)</p>
+                        </div>
+                        <div class="project-image">
+                            <img src="Img/Srovnavac-S.png" alt="UX redesign dluhopisového portálu Srovnávač dluhopisů">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OSTATNÍ PROJEKTY -->
+        <section>
+            <div class="container">
+                <p class="other-projects-label">A desítky dalších projektů</p>
+                <div class="other-projects">
+                    <p><strong>Ambience expo, Betonpres</strong> (agentura NexGen), <strong>Biofa</strong> (agentura BlueGhost), <strong>BohemiaJobs, Jenda</strong> (agentura DesignDev), <strong>Komerční banka, Lasvit</strong> (agentura House of Řezáč), <strong>NexGen, Munipolis, Thrivee</strong> (agentura DesignDev), <strong>TIC Brno</strong> (agentura House of Řezáč), <strong>UserUp, Veracomp, Zčech</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- O MNĚ -->
+        <section id="info">
+            <div class="container">
+                <h2>Designér a partner</h2>
+                <div class="about-content">
+                    <p>Vystudoval jsem grafický design na VUT v Brně. Časem jsem se posunul k UX, výzkumu a strategii. Pracoval jsem v agenturách i produktových týmech a viděl jsem, co funguje a co ne. Díky tomu jsem se naučil <strong>zapojovat uživatele do tvorby</strong> a navrhovat řešení, která reálně zlepšují byznys klientů.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- KONTAKT -->
+        <section id="kontakt">
+            <div class="container">
+                <h2>Váš projekt má na víc.<br>Probereme to?</h2>
+
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <p>Napište mi, obratem odpovím</p>
+                        <p><a href="mailto:marker@seznam.cz">marker@seznam.cz</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <p>Jsem z Olomouce, ale můžeme se sejít:</p>
+                        <p>Praha, Brno, Ostrava</p>
+                    </div>
+                    <div class="contact-item">
+                        <p>Zjistěte o mně více</p>
+                        <p><a href="https://www.linkedin.com/in/marekjelinek/" target="_blank">LinkedIn</a></p>
+                    </div>
+                </div>
+
+                <div class="kontakt-footer">
+                    <button class="button button-round" id="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // HAMBURGER MENU
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeBtn = document.getElementById('closeBtn');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+
+        // Zavřít menu při kliknutí na odkaz
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // SCROLL TO TOP - zobrazení/skrytí
+        const scrollToTop = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTop.style.display = 'flex';
+            } else {
+                scrollToTop.style.display = 'none';
+            }
+        });
+
+        // RESPONSIVE MENU - zavřít při změně velikosti okna
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
