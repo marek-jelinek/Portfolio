@@ -60,7 +60,50 @@
             --gray-light: #E6E6E6;
             --gray-medium: #8C8C8C;
             --container-gap: 30px;
+
+            /* SPACING SYSTÉM - škála vertikálních mezer */
+            --space-xsmall: 15px;
+            --space-small: 30px;
+            --space-medium: 50px;
+            --space-large: 70px;
+            --space-xlarge: 100px;
+            --space-ultra: 150px;
+
+            /* Poloviční varianty - pro rozdělení mezery mezi dva sousední prvky */
+            --space-xsmall-half: 7.5px;
+            --space-small-half: 15px;
+            --space-medium-half: 25px;
+            --space-large-half: 35px;
+            --space-xlarge-half: 50px;
+            --space-ultra-half: 75px;
         }
+
+        /* SPACING UTILITY TŘÍDY - pro obecné použití na libovolném prvku */
+        .mt-xsmall { margin-top: var(--space-xsmall); }
+        .mb-xsmall { margin-bottom: var(--space-xsmall); }
+        .mt-small { margin-top: var(--space-small); }
+        .mb-small { margin-bottom: var(--space-small); }
+        .mt-medium { margin-top: var(--space-medium); }
+        .mb-medium { margin-bottom: var(--space-medium); }
+        .mt-large { margin-top: var(--space-large); }
+        .mb-large { margin-bottom: var(--space-large); }
+        .mt-xlarge { margin-top: var(--space-xlarge); }
+        .mb-xlarge { margin-bottom: var(--space-xlarge); }
+        .mt-ultra { margin-top: var(--space-ultra); }
+        .mb-ultra { margin-bottom: var(--space-ultra); }
+
+        .mt-xsmall-half { margin-top: var(--space-xsmall-half); }
+        .mb-xsmall-half { margin-bottom: var(--space-xsmall-half); }
+        .mt-small-half { margin-top: var(--space-small-half); }
+        .mb-small-half { margin-bottom: var(--space-small-half); }
+        .mt-medium-half { margin-top: var(--space-medium-half); }
+        .mb-medium-half { margin-bottom: var(--space-medium-half); }
+        .mt-large-half { margin-top: var(--space-large-half); }
+        .mb-large-half { margin-bottom: var(--space-large-half); }
+        .mt-xlarge-half { margin-top: var(--space-xlarge-half); }
+        .mb-xlarge-half { margin-bottom: var(--space-xlarge-half); }
+        .mt-ultra-half { margin-top: var(--space-ultra-half); }
+        .mb-ultra-half { margin-bottom: var(--space-ultra-half); }
 
         html {
             scroll-behavior: smooth;
@@ -232,27 +275,53 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 30px;
+        }
+
+        /* ŠÍŘKOVÉ UTILITY TŘÍDY - pro obecné použití na libovolných kontejnerech */
+        .width-33 {
+            width: 33.33%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .width-50 {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .width-66 {
+            width: 66.67%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .width-75 {
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* SEKCE */
         section {
-            padding: 60px 0;
+            padding-top: var(--space-ultra-half);
+            padding-bottom: var(--space-ultra-half);
         }
 
         /* TYPOGRAFIE */
         h1 {
             font-size: 76px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: var(--space-xsmall);
             line-height: 1.2;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
         }
 
         h2 {
             font-size: 70px;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: var(--space-small);
             line-height: 1.2;
             letter-spacing: -1px;
             text-align: center;
@@ -261,13 +330,14 @@
         h3 {
             font-size: 40px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: var(--space-xsmall);
             line-height: 1.2;
             letter-spacing: -1px;
         }
 
         p {
             font-size: 16px;
+            line-height: 1.5;
             margin-bottom: 15px;
         }
 
@@ -299,7 +369,6 @@
         }
 
         .hero-content h1 {
-            font-size: 76px;
             text-align: center;
         }
 
@@ -316,8 +385,8 @@
 
         .hero-image img {
             width: 100%;
-            height: 580px;
-            object-fit: cover;
+            height: auto;
+            display: block;
             border-radius: 0;
         }
 
@@ -326,7 +395,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            margin-top: 40px;
+            margin-top: var(--space-large-half);
         }
 
         .stat-item {
@@ -334,7 +403,7 @@
         }
 
         .stat-number {
-            font-size: 70px;
+            font-size: 45px;
             font-weight: bold;
             color: var(--black);
             margin-bottom: 10px;
@@ -351,8 +420,12 @@
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 60px;
-            margin-top: 40px;
+            gap: var(--space-xlarge);
+            margin-top: var(--space-xlarge);
+        }
+
+        #projekty .intro-text {
+            margin-bottom: 0;
         }
 
         .project {
@@ -360,14 +433,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-        }
-
-        .project:nth-child(even) {
-            direction: rtl;
-        }
-
-        .project:nth-child(even) > * {
-            direction: ltr;
         }
 
         .project-content small {
@@ -431,6 +496,43 @@
         }
 
         /* RESPONSIVITA */
+        /* INTRO TEXT */
+        .intro-text {
+            font-size: 40px;
+            font-weight: normal;
+            color: var(--primary-text);
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            width: 66.67%;
+            margin: 0 auto;
+            margin-bottom: var(--space-large-half);
+        }
+
+        .other-projects-label {
+            font-size: 16px;
+            color: var(--primary-text);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .other-projects {
+            width: 75%;
+            margin: 40px auto 0;
+            text-align: center;
+        }
+
+        .other-projects p {
+            font-size: 40px;
+            font-weight: normal;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .other-projects strong {
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             header {
                 padding: 20px;
@@ -453,7 +555,7 @@
             }
 
             .container {
-                padding: 0 20px;
+                padding: 0 30px;
             }
 
             section {
@@ -474,6 +576,11 @@
 
             .intro-text {
                 font-size: 30px;
+                width: 100%;
+            }
+
+            .other-projects {
+                width: 100%;
             }
 
             .hero {
@@ -489,10 +596,6 @@
             .project {
                 grid-template-columns: 1fr;
                 gap: 30px;
-            }
-
-            .project:nth-child(even) {
-                direction: ltr;
             }
 
             .project-image {
@@ -516,11 +619,15 @@
             }
 
             .container {
-                padding: 0 15px;
+                padding: 0 20px;
+            }
+
+            .hero-image {
+                width: 66.67%;
             }
 
             h1 {
-                font-size: 32px;
+                font-size: 50px;
             }
 
             h2 {
@@ -529,6 +636,14 @@
 
             h3 {
                 font-size: 30px;
+            }
+
+            p,
+            .project-content p,
+            .about-content p,
+            .contact-item p,
+            .stat-text {
+                font-size: 16px;
             }
 
             .button {
@@ -545,39 +660,6 @@
             }
         }
 
-        /* INTRO TEXT */
-        .intro-text {
-            font-size: 40px;
-            font-weight: normal;
-            color: var(--primary-text);
-            text-align: center;
-            line-height: 1.2;
-            letter-spacing: -1px;
-            margin: 0 auto 40px;
-        }
-
-        .other-projects-label {
-            font-size: 16px;
-            color: var(--primary-text);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .other-projects {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .other-projects p {
-            font-size: 30px;
-            font-weight: normal;
-            letter-spacing: -1px;
-            line-height: 1.2;
-        }
-
-        .other-projects strong {
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -703,7 +785,7 @@
             <div class="container">
                 <p class="other-projects-label">A desítky dalších projektů</p>
                 <div class="other-projects">
-                    <p><strong>Ambience expo, Betonpres</strong> (agentura NexGen), <strong>Biofa</strong> (agentura BlueGhost), <strong>BohemiaJobs, Jenda</strong> (agentura DesignDev), <strong>Komerční banka, Lasvit</strong> (agentura House of Řezáč), <strong>NexGen, Munipolis, Thrivee</strong> (agentura DesignDev), <strong>TIC Brno</strong> (agentura House of Řezáč), <strong>UserUp, Veracomp, Zčech</strong></p>
+                    <p><strong>Betonpres</strong> (agentura NexGen), <strong>Biofa</strong> (agentura BlueGhost), <strong>BohemiaJobs, Jenda</strong> (agentura DesignDev), <strong>Komerční banka</strong> (agentura Bell & Hurry), <strong>Lasvit</strong> (agentura House of Řezáč), <strong>NexGen, Munipolis, Thrivee</strong> (agentura DesignDev), <strong>TIC Brno</strong> (agentura House of Řezáč), <strong>UserUp, Veracomp, Zčech</strong></p>
                 </div>
             </div>
         </section>
