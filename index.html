@@ -327,6 +327,10 @@
             text-align: center;
         }
 
+        #intro h2 {
+            margin-bottom: var(--space-medium);
+        }
+
         h3 {
             font-size: 40px;
             font-weight: bold;
@@ -395,7 +399,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            margin-top: var(--space-large-half);
+            margin-top: var(--space-large);
         }
 
         .stat-item {
@@ -424,7 +428,7 @@
             margin-top: var(--space-xlarge);
         }
 
-        #projekty .intro-text {
+        #projekty .subtitle {
             margin-bottom: 0;
         }
 
@@ -511,7 +515,7 @@
 
         /* RESPONSIVITA */
         /* INTRO TEXT */
-        .intro-text {
+        .subtitle {
             font-size: 40px;
             font-weight: normal;
             color: var(--primary-text);
@@ -521,6 +525,22 @@
             width: 66.67%;
             margin: 0 auto;
             margin-bottom: var(--space-large-half);
+        }
+
+        .pain-points {
+            width: fit-content;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .pain-points .subtitle {
+            width: auto;
+            text-align: left;
+            margin-bottom: var(--space-xsmall);
+        }
+
+        .pain-points .subtitle:last-child {
+            margin-bottom: 0;
         }
 
         .other-projects-label {
@@ -588,12 +608,16 @@
                 font-size: 30px;
             }
 
-            .intro-text {
+            .subtitle {
                 font-size: 30px;
                 width: 100%;
             }
 
             .other-projects {
+                width: 100%;
+            }
+
+            .pain-points {
                 width: 100%;
             }
 
@@ -731,13 +755,6 @@
                         <img src="Img/Marek.png" alt="Marek Jelínek - UX designer na volné noze">
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- STATISTIKY A INTRO -->
-        <section>
-            <div class="container">
-                <p class="intro-text">Pomáhám firmám, aby zbytečně nepálily zdroje a stavěly věci, které reálně vydělávají</p>
 
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -756,11 +773,26 @@
             </div>
         </section>
 
+        <!-- INTRO A BODY BOLESTI -->
+        <section id="intro">
+            <div class="container">
+                <h2>Řeším složité problémy</h2>
+
+                <div class="pain-points">
+                    <p class="subtitle">➔ Nízké konverze a odchody uživatelů</p>
+                    <p class="subtitle">➔ Přetížená zákaznická podpora</p>
+                    <p class="subtitle">➔ Vyvíjíte funkce, které nikdo nepoužívá</p>
+                    <p class="subtitle">➔ Máte nápady, ale nejste si jistí</p>
+                    <p class="subtitle">➔ Nekonzistentní design</p>
+                </div>
+            </div>
+        </section>
+
         <!-- PROJEKTY -->
         <section id="projekty">
             <div class="container">
                 <h2>Vybrané práce</h2>
-                <p class="intro-text">Starám se o celý proces designu od prvních nápadů až po návrh rozhraní</p>
+                <p class="subtitle">Starám se o celý proces designu od prvních nápadů až po návrh rozhraní</p>
 
                 <div class="projects-grid">
                     <!-- Projekt 1: Donio -->
