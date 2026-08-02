@@ -123,7 +123,7 @@
             left: 0;
             right: 0;
             background-color: transparent;
-            padding: 20px 40px;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -303,10 +303,10 @@
             margin-right: auto;
         }
 
-        /* SEKCE */
+        /* SEKCE - mezi sekcemi 2x xlarge (200px) celkem, rozděleno 100+100 */
         section {
-            padding-top: var(--space-ultra-half);
-            padding-bottom: var(--space-ultra-half);
+            padding-top: var(--space-xlarge);
+            padding-bottom: var(--space-xlarge);
         }
 
         /* TYPOGRAFIE */
@@ -420,7 +420,7 @@
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: var(--space-xlarge);
+            gap: var(--space-ultra);
             margin-top: var(--space-xlarge);
         }
 
@@ -465,10 +465,17 @@
         #kontakt {
             background-color: var(--primary-text);
             color: var(--white);
+            padding-top: var(--space-ultra);
+            padding-bottom: 30px;
+        }
+
+        #info {
+            padding-bottom: var(--space-ultra);
         }
 
         #kontakt h2 {
             color: var(--white);
+            margin-bottom: var(--space-large);
         }
 
         .contact-grid {
@@ -491,8 +498,15 @@
         /* SCROLL TO TOP V KONTAKTNÍ SEKCI */
         .kontakt-footer {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 60px;
+            padding: 0 30px;
+        }
+
+        .kontakt-footer .copyright {
+            font-size: 16px;
+            color: var(--white);
         }
 
         /* RESPONSIVITA */
@@ -622,8 +636,16 @@
                 padding: 0 20px;
             }
 
+            .kontakt-footer {
+                padding: 0 20px;
+            }
+
             .hero-image {
                 width: 66.67%;
+            }
+
+            #kontakt {
+                padding-bottom: 20px;
             }
 
             h1 {
@@ -819,10 +841,11 @@
                         <p><a href="https://www.linkedin.com/in/marekjelinek/" target="_blank">LinkedIn</a></p>
                     </div>
                 </div>
+            </div>
 
-                <div class="kontakt-footer">
-                    <button class="button button-round" id="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
-                </div>
+            <div class="kontakt-footer">
+                <span class="copyright">© 2008-2026 Marek Jelínek</span>
+                <button class="button button-round" id="scrollToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
             </div>
         </section>
     </main>
