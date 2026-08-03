@@ -541,7 +541,12 @@ a:hover {
 
 .contact-item p {
   font-size: 20px;
-  margin-bottom: 10px;
+}
+
+/* MENŠÍ MEZERA MEZI POPISKEM A HODNOTOU UVNITŘ JEDNOHO BLOKU - mezera MEZI bloky
+   (přes gap v .contact-grid + margin poslední <p>) zůstává beze změny */
+.contact-item p:not(:last-child) {
+  margin-bottom: 6px;
 }
 
 .contact-item a {
@@ -700,7 +705,7 @@ a:hover {
 
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: var(--space-small);
   }
 
   .kontakt-footer {
@@ -725,11 +730,29 @@ a:hover {
     right: 15px;
   }
 
+  /* NA MOBILU JE HAMBURGER VÝCHOZE BEZ KOLEČKA, KOLEČKO SE OBJEVÍ AŽ PO ROZSCROLLOVÁNÍ */
+  .hamburger {
+    background-color: transparent;
+  }
+
+  .hamburger span {
+    background-color: var(--black);
+  }
+
+  body.scrolled .hamburger {
+    background-color: var(--black);
+  }
+
+  body.scrolled .hamburger span {
+    background-color: var(--white);
+  }
+
   .container {
     padding: 0 20px;
   }
 
   .kontakt-footer {
+    justify-content: space-between;
     padding: 0 20px;
   }
 
@@ -738,7 +761,13 @@ a:hover {
   }
 
   #kontakt {
+    padding-top: var(--space-large);
     padding-bottom: 20px;
+  }
+
+  /* MENŠÍ MEZERA PŘED KONTAKTNÍ SEKCÍ NA MOBILU - stejná jako mezi ostatními sekcemi */
+  #info {
+    padding-bottom: var(--space-large);
   }
 
   h1 {
@@ -746,7 +775,11 @@ a:hover {
   }
 
   h2 {
-    font-size: 45px;
+    font-size: 40px;
+  }
+
+  .hero-content p {
+    font-size: 20px;
   }
 
   h3 {
@@ -771,7 +804,14 @@ a:hover {
     font-size: 14px;
   }
 
+  /* SPACING MEZI SEKCEMI ZVĚTŠEN CCA O 100 % (z 30px na space-large) */
   section {
-    padding: 30px 0;
+    padding: var(--space-large) 0;
+  }
+
+  /* TROCHU MENŠÍ MEZERA MEZI PODTEXTEM A PROJEKTY A MEZI JEDNOTLIVÝMI PROJEKTY */
+  .projects-grid {
+    margin-top: var(--space-large);
+    gap: var(--space-xlarge);
   }
 }
