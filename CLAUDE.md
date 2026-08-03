@@ -5,9 +5,18 @@ Osobní portfolio UX designera Marka Jelínka. One-page web, běží na **marekj
 
 ## Technologie a hosting
 - Čisté HTML5 + CSS3 + JavaScript (žádný framework, žádný build krok)
+- Styly jsou v samostatném souboru **`styles.css`**, napojeném v `index.html` přes `<link>`
+  (dřív byly inline v `<style>` v hlavičce, vyčleněny kvůli přehlednosti)
 - Hostováno na **Cloudflare** (Workers se statickými assety, ne klasické "Pages")
   - Konfigurace: `wrangler.toml` (assets.directory = "./")
-  - Cloudflare projekt se jmenuje "portfolio"
+  - Cloudflare projekt se jmenuje "portfolio", účet marker@seznam.cz
+  - Nasazení: `npx wrangler deploy` (přihlášení přes `npx wrangler login` - jednorázově,
+    musí to udělat uživatel sám, ne agent, protože jde o přihlášení k jeho účtu)
+  - Doména přístupná i přes `https://portfolio.marker-b63.workers.dev` (worker subdoména)
+  - **DŮLEŽITÉ:** `assets.directory = "./"` míří na kořen celého repa, takže Wrangler by bez
+    dalšího opatření nahrál na veřejný web i `.git`, `.wrangler`, `.DS_Store` apod. Tomu
+    brání soubor **`.assetsignore`** (syntaxe jako `.gitignore`) - musí zůstat aktuální při
+    přidávání nových lokálních/citlivých souborů do repa
 - Kód uložený na GitHubu: **marek-jelinek/Portfolio** (větev main)
   - Přihlášení přes GitHub CLI (`gh`), credential helper nastavený v Gitu
 - Doména **marekjelinek.cz**:
@@ -39,9 +48,19 @@ Osobní portfolio UX designera Marka Jelínka. One-page web, běží na **marekj
 
 ### Písmo
 - **Rodina:** Arial, Inter (fallback sans-serif)
+- Základní text (`p`): **20px na D i T, 16px na M** (dřív bylo omylem plochých 16px všude -
+  opraveno, protože 16px má být jen ten nejmenší text v systému)
 - Řádkování (line-height) u velkých/nadpisových stylů: **120 %**
 - Řádkování u běžného textu (`p`): **150 %**
 - Prostrkání (letter-spacing) u velkých textů: **-1px až -2px** (u H1 -2px)
+- Styl `.subtitle` (velký centrovaný "podnadpisový" text): **40px na D, 30px na T i M**
+  - Používá se: text pod "Řeším složité problémy", text pod "Vybrané projekty"
+- Stejnou velikost jako `.subtitle` (40/30/30) mají i:
+  - `.stat-number` (čísla ve statistikách)
+  - položky v rozbaleném hamburger menu (`.mobile-menu a`) - **vlastní třída**, ne přímo
+    `.subtitle` (na přání: "stejná velikost, ale nepoužívej stejný styl")
+- Velikost stylu `h3` (40px D, 30px T/M) má i text v sekci "Ostatní projekty"
+  (`.other-projects p`)
 
 ### Breakpointy (zkratky používané v zadáních)
 - **D (desktop):** výchozí styl, žádný media query, > 768px
@@ -58,17 +77,25 @@ CSS proměnné v `:root`, používat vždy tyto, nezadávat mezery napevno v px:
 - `--space-ultra: 150px`
 - Ke každé existuje i poloviční varianta (`--space-xxx-half`) pro rozdělení mezery mezi
   dva sousední prvky (např. spodní okraj jednoho + horní okraj druhého)
-- K dispozici i utility třídy `.mt-xxx` / `.mb-xxx` (a `-half` varianty) pro obecné použití
+- K dispozici i utility třídy `.mt-xxx` / `.mb-xxx` (a `-half` varianty) pro obecné použití.
+  **Momentálně se nikde v HTML nepoužívají, ale uživatel je chce zachovat v kódu pro budoucí
+  použití - nemazat jako "mrtvý kód" bez ptaní.**
 
 **Kde se používá:**
-- Mezi sekcemi: 200px (2× xlarge, rozděleno 100+100 padding), KROMĚ přechodu
-  "O mně → Kontakt", kde je záměrně 300px (ultra + ultra)
+- Mezi sekcemi obecně: 200px (2× xlarge, rozděleno 100+100 padding), KROMĚ přechodu
+  "O mně → Kontakt", kde je záměrně 300px (ultra + ultra) - schválně větší pauza před
+  kontaktní sekcí
 - Mezi projekty (`.projects-grid` gap): ultra (150px)
-- H1 margin-bottom: xsmall, H2: small (kromě `#intro h2` → medium), H3: xsmall
+- Mezi sekcí Projekty a seznamem "Ostatní projekty": taky ultra (150px) - `.other-projects-section`
+  má vlastní `padding-top: var(--space-medium)`, který spolu se standardním spodním
+  odsazením sekce Projekty dá dohromady přesně ultra
+- Mezi kontaktní mřížkou a patičkou (`.kontakt-footer`): ultra (150px)
+- H1 margin-bottom: xsmall, H2: small, H3: xsmall
 
 ### Šířkové utility třídy
 `.width-33`, `.width-50`, `.width-66`, `.width-75` (33,33 % / 50 % / 66,67 % / 75 % šířky
-rodiče, na střed) - obecně použitelné na libovolný kontejner.
+rodiče, na střed) - obecně použitelné na libovolný kontejner. **Stejně jako mezerové utility
+třídy se momentálně nikde nepoužívají, ale mají v kódu zůstat pro budoucí použití.**
 
 ### Layout - hlavička a patička "na okraj"
 Hlavička (`header`) a patička kontaktní sekce (`.kontakt-footer` - copyright + tlačítko
@@ -76,40 +103,65 @@ nahoru) se **záměrně roztahují až k pravému/levému okraji okna prohlíže
 tom, že hlavní obsah stránky je omezený na max-width 1400px na střed. Proto nejsou uvnitř
 `.container`, ale mají vlastní horizontální padding (30px D/T, 20px M).
 
-### Komponenty
-- **Tlačítko primární** (černé s bílým textem) - pro světlé pozadí
-- **Tlačítko na tmavém pozadí** (bílé s tmavým textem, třída `.button-on-dark`) - kdykoliv
-  je tlačítko na tmavé/černé ploše, vždy použít tuto invertovanou variantu kvůli kontrastu
+### Menu a hlavička
+- **Logo** (vlevo nahoře) **není fixní** - je součástí normálního toku stránky (`position:
+  absolute` vůči dokumentu, ne vůči oknu) a při scrollování normálně odjede pryč se stránkou.
+  Není součástí hamburger menu.
+- **Desktop (D):** nahoře na stránce je vidět celé menu (odkazy + tlačítko Konzultace).
+  Jakmile uživatel začne scrollovat (`body.scrolled`), menu se plynule zmenší, posune a
+  schová a místo něj naskočí kulatý hamburger (stejný, jaký je trvale vidět na T/M).
+- **Tablet a mobil (T/M):** hamburger je vidět vždy, celé menu s odkazy se nezobrazuje nikdy.
+- **Hamburger ikona:** černé kolečko 50×50px (stejná velikost jako `.button-round` dole v
+  patičce), fixní pozice vpravo nahoře. Při otevření menu hamburger zmizí a **na přesně
+  stejném místě** (stejné souřadnice) se objeví křížek pro zavření (`.close-btn`) - bez
+  vlastního kolečka kolem sebe, jen ikona samotná.
+- Otevřené menu (`.mobile-menu`) je overlay v barvě primárního textu (ne čistě černé).
+
+### Komponenty (tlačítka)
+- **`.button-primary`** (černé s bílým textem) - definované v CSS, ale momentálně nikde v
+  HTML nepoužité. Zachovat pro budoucí použití, nemazat.
+- **`.button-outline`** - obrys (1px, barva primárního textu), průhledné pozadí, text stejnou
+  barvou jako okolní texty. Používá se pro tlačítko Konzultace v hlavičce na světlém pozadí.
+- **`.button-outline-on-dark`** - stejný princip, ale bílý obrys a bílý text pro tmavé pozadí.
+  Používá se pro tlačítko Konzultace uvnitř rozbaleného hamburger menu. Velikost textu
+  přebírá základní styl `p` (20px D/T, 16px M).
+- **`.button-round`** (kruhové) - tlačítko scroll-to-top v patičce kontaktní sekce, bílé na
+  tmavém pozadí, zarovnané k pravému okraji stránky.
 - Kartičky projektů - obrázek a text vedle sebe, **bez střídání stran** (žádný cik-cak),
-  na tabletu/mobilu obrázek nahoře a text pod ním
-- Hamburger menu (overlay v barvě primárního textu, ne čistě černé) - zavírací křížek se
-  **nesmí animovat** (dřív docházelo k překryvu s hamburger ikonou, teď se hamburger ikona
-  při otevření jen schová)
-- Tlačítko scroll-to-top (kruhové, `.button-round`) - v kontaktní sekci, zarovnané k
-  pravému okraji stránky (stejná úroveň jako tlačítko Konzultace v hlavičce)
+  na tabletu/mobilu obrázek nahoře a text pod ním.
+
+### Hover efekt
+Všechny interaktivní prvky (odkazy, všechna tlačítka, logo, hamburger, křížek zavření)
+mají **jednotný hover efekt** - jemné ztlumení na `opacity: 0.6` (přechod 0.3s). Sjednoceno
+z dřívějších různých hoverů (barva textu, barva pozadí) do jednoho pravidla kvůli
+konzistenci. Původně zkoušeno agresivnější `opacity: 0.25`, ale to působilo jako příliš
+velká změna barvy - zmírněno na 0.6.
+
+### Animace
+- **Menu → hamburger:** při scrollování na desktopu se menu zmenší a odsune (`scale` +
+  `translateX`, 0.35s) a hamburger se "vypruží" na místo (scale s `cubic-bezier` odrazem).
+- **Počítání čísel ve statistikách:** čísla (10+, 2.0x, 125 000+) se při vjetí do viewportu
+  (IntersectionObserver, spustí se jen jednou) načítají od nuly nahoru, cca 1,6s pro všechna
+  tři čísla stejně (ease-out křivka, ne lineárně). Přesnost odpovídá výslednému číslu - celé
+  jednotky pro 10+ a 125 000+, desetiny pro 2.0x (běží jako "0.3x, 0.7x..." a na konci zůstane
+  přesně "2.0x", ne zaokrouhleno na "2x").
 
 ## Sekce webu (aktuální pořadí)
-1. **Header** - Logo + menu + tlačítko Konzultace (roztažené k okrajům okna)
-2. **Úvod (#uvod)** - H1 "Redesignér", tagline, profilová fotka, hned pod tím statistiky
-   (10+, 2x, 125 000+) - přesunuté sem z vlastní sekce
-3. **Intro a problémy (#intro)** - H2 "Řeším složité problémy" + seznam bolestivých bodů
-   (5 vět se šipkou ➔, styl `.subtitle`, zarovnané na levý praporek, blok na střed podle
-   nejdelšího řádku)
-4. **Projekty (#projekty)** - H2 "Vybrané práce" + podtext, 3 projekty (Donio, RegioJet,
-   Srovnávač dluhopisů), obrázky a texty v jednom pořadí (bez střídání)
-5. **Další projekty** - text se jmény firem a agentur (styl stejný jako `.subtitle`, 40px)
-6. **O mně (#info)** - text o vzdělání a zkušenosti
-7. **Kontakt (#kontakt)** - tmavé pozadí, nadpis, email/lokace/LinkedIn, v patičce copyright
-   "© 2008-2026 Marek Jelínek" (vlevo) a tlačítko scroll-to-top (vpravo)
-
-## Styl "subtitle" (dřív "intro-text")
-Sdílený styl pro velké centrované "podnadpisové" texty (40px, letter-spacing -1px,
-line-height 1.2). Používá se na:
-- Úvodní větu v `#uvod` ("Pomáhám firmám...")
-- Podtext u "Vybrané práce"
-- Seznam bolestivých bodů v `#intro` (s doplňkovými pravidly `.pain-points .subtitle`,
-  které mění zarovnání na levé a šířku na auto/fit-content, protože kontext je jiný -
-  seznam, ne centrovaná věta)
+1. **Header** - Logo (mimo hlavičku, není fixní) + menu/hamburger (fixní, viz výše)
+2. **Úvod (`#uvod`)** - H1 "Redesignér", tagline, profilová fotka. Statistiky už tu NEJSOU
+   (přesunuté do sekce Intro, viz níže).
+3. **Intro a výsledky (`#intro`)** - H2 "Řeším složité problémy", pod ním `.subtitle` text,
+   pod ním statistiky (10+, 2.0x, 125 000+) s počítací animací. Dřív tu byl seznam bolestivých
+   bodů se šipkami ➔ (`.pain-points`) - ten byl zrušen a nahrazen jednou větou.
+4. **Projekty (`#projekty`)** - H2 "Vybrané projekty" (dřív "Vybrané práce") + `.subtitle`
+   podtext, 3 projekty (Donio, RegioJet, Srovnávač dluhopisů), obrázky a texty v jednom
+   pořadí (bez střídání stran).
+5. **Ostatní projekty (`.other-projects-section`)** - text se jmény firem a agentur, velikost
+   textu jako `h3` (40/30/30).
+6. **O mně (`#info`)** - text o vzdělání a zkušenosti.
+7. **Kontakt (`#kontakt`)** - tmavé pozadí, nadpis, email/lokace/LinkedIn, v patičce copyright
+   "© 2008-teď Marek Jelínek" (vlevo, rok se píše jako "teď", ne pevné datum) a tlačítko
+   scroll-to-top (vpravo).
 
 ## Meta tagy (SEO)
 - Title: "Marek Jelínek – UX & Product designer"
@@ -129,3 +181,7 @@ line-height 1.2). Používá se na:
   záchranný bod, pak zkusit variantu, a nabídnout snadný návrat
 - Po dokončení nějakého uceleného kroku nabídnout git commit se srozumitelnou českou zprávou
 - Nedávat po každé úpravě dlouhé shrnutí (viz obecné pravidlo v `/Users/marek/LAB/CLAUDE.md`)
+- Když uživatel řekne "nech to/ty" u něčeho označeného jako nepoužívané - znamená to zachovat
+  v kódu i když je to momentálně "mrtvé", ne smazat (viz mezerové/šířkové utility, `.button-primary`)
+- Nasazení (`wrangler deploy`) je citlivá akce viditelná navenek - před prvním nasazením v
+  session ověřit, že existuje a funguje `.assetsignore`, ať se znovu nenahraje `.git` na web
