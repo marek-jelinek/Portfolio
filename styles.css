@@ -1,0 +1,777 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-text: #1f1f1f;
+  --primary-bg: #f8f8f8;
+  --black: #000000;
+  --white: #ffffff;
+  --gray-light: #e6e6e6;
+  --gray-medium: #8c8c8c;
+
+  /* SPACING SYSTÉM - škála vertikálních mezer */
+  --space-xsmall: 15px;
+  --space-small: 30px;
+  --space-medium: 50px;
+  --space-large: 70px;
+  --space-xlarge: 100px;
+  --space-ultra: 150px;
+
+  /* Poloviční varianty - pro rozdělení mezery mezi dva sousední prvky */
+  --space-xsmall-half: 7.5px;
+  --space-small-half: 15px;
+  --space-medium-half: 25px;
+  --space-large-half: 35px;
+  --space-xlarge-half: 50px;
+  --space-ultra-half: 75px;
+}
+
+/* SPACING UTILITY TŘÍDY - pro obecné použití na libovolném prvku */
+.mt-xsmall {
+  margin-top: var(--space-xsmall);
+}
+.mb-xsmall {
+  margin-bottom: var(--space-xsmall);
+}
+.mt-small {
+  margin-top: var(--space-small);
+}
+.mb-small {
+  margin-bottom: var(--space-small);
+}
+.mt-medium {
+  margin-top: var(--space-medium);
+}
+.mb-medium {
+  margin-bottom: var(--space-medium);
+}
+.mt-large {
+  margin-top: var(--space-large);
+}
+.mb-large {
+  margin-bottom: var(--space-large);
+}
+.mt-xlarge {
+  margin-top: var(--space-xlarge);
+}
+.mb-xlarge {
+  margin-bottom: var(--space-xlarge);
+}
+.mt-ultra {
+  margin-top: var(--space-ultra);
+}
+.mb-ultra {
+  margin-bottom: var(--space-ultra);
+}
+
+.mt-xsmall-half {
+  margin-top: var(--space-xsmall-half);
+}
+.mb-xsmall-half {
+  margin-bottom: var(--space-xsmall-half);
+}
+.mt-small-half {
+  margin-top: var(--space-small-half);
+}
+.mb-small-half {
+  margin-bottom: var(--space-small-half);
+}
+.mt-medium-half {
+  margin-top: var(--space-medium-half);
+}
+.mb-medium-half {
+  margin-bottom: var(--space-medium-half);
+}
+.mt-large-half {
+  margin-top: var(--space-large-half);
+}
+.mb-large-half {
+  margin-bottom: var(--space-large-half);
+}
+.mt-xlarge-half {
+  margin-top: var(--space-xlarge-half);
+}
+.mb-xlarge-half {
+  margin-bottom: var(--space-xlarge-half);
+}
+.mt-ultra-half {
+  margin-top: var(--space-ultra-half);
+}
+.mb-ultra-half {
+  margin-bottom: var(--space-ultra-half);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Inter, sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  line-height: 1.6;
+}
+
+/* HEADER / NAVIGACE */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo {
+  position: absolute;
+  top: 29px;
+  left: 30px;
+  font-weight: normal;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+nav {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateX(0);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0.35s;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--primary-text);
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+}
+
+/* PŘI SCROLLOVÁNÍ SE MENU ZMENŠÍ, ODSUNE A SCHOVÁ - MÍSTO NĚJ SE UKÁŽE HAMBURGER */
+body.scrolled nav {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8) translateX(20px);
+  pointer-events: none;
+}
+
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.5);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    visibility 0.35s;
+}
+
+.hamburger span {
+  width: 20px;
+  height: 2px;
+  background-color: var(--white);
+}
+
+/* HAMBURGER SE UKÁŽE PO ROZSCROLLOVÁNÍ - VYPADÁ TO, ŽE DO NĚJ MENU "ZAJELO" */
+body.scrolled .hamburger {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+body.scrolled .hamburger:hover {
+  opacity: 0.6;
+}
+
+/* HAMBURGER - SCHOVÁ SE PŘI OTEVŘENÉM MENU (zavírá se pomocí .close-btn) */
+.hamburger.active {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* MOBILE MENU OVERLAY */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--primary-text);
+  z-index: 1001;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 40px;
+  font-weight: normal;
+  letter-spacing: -1px;
+  margin: 20px 0;
+  transition: opacity 0.3s ease;
+}
+
+.close-btn {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: var(--white);
+  cursor: pointer;
+  z-index: 1002;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu .button {
+  margin-top: 30px;
+  font-size: 20px;
+  padding: 16px 27px;
+}
+
+/* TLAČÍTKA */
+.button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: normal;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button-primary {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.button-primary:hover {
+  background-color: var(--gray-medium);
+}
+
+/* Obrysová varianta tlačítka - průhledné pozadí, tenký 1px okraj */
+.button-outline {
+  background-color: transparent;
+  color: var(--primary-text);
+  border: 1px solid var(--primary-text);
+}
+
+/* Obrysová varianta tlačítka pro tmavé pozadí - bílý 1px okraj */
+.button-outline-on-dark {
+  background-color: transparent;
+  color: var(--white);
+  border: 1px solid var(--white);
+}
+
+.button-round {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 24px;
+  background-color: var(--white);
+  color: var(--primary-text);
+}
+
+/* MAIN CONTENT */
+main {
+  margin-top: 80px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* ŠÍŘKOVÉ UTILITY TŘÍDY - pro obecné použití na libovolných kontejnerech */
+.width-33 {
+  width: 33.33%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.width-50 {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.width-66 {
+  width: 66.67%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.width-75 {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* SEKCE - mezi sekcemi 2x xlarge (200px) celkem, rozděleno 100+100 */
+section {
+  padding-top: var(--space-xlarge);
+  padding-bottom: var(--space-xlarge);
+}
+
+/* TYPOGRAFIE */
+h1 {
+  font-size: 76px;
+  font-weight: bold;
+  margin-bottom: var(--space-xsmall);
+  line-height: 1.2;
+  letter-spacing: -2px;
+}
+
+h2 {
+  font-size: 70px;
+  font-weight: bold;
+  margin-bottom: var(--space-small);
+  line-height: 1.2;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: var(--space-xsmall);
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+small {
+  font-size: 20px;
+  color: var(--gray-medium);
+}
+
+strong {
+  font-weight: bold;
+}
+
+a {
+  color: var(--primary-text);
+  text-decoration: underline;
+  transition: opacity 0.3s ease;
+}
+
+/* JEDNOTNÝ HOVER EFEKT PRO VŠECHNY INTERAKTIVNÍ PRVKY - jemné ztlumení průhledností */
+.logo:hover,
+.hamburger:hover,
+.close-btn:hover,
+.button:hover,
+a:hover {
+  opacity: 0.6;
+}
+
+/* HERO SEKCE */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content h1 {
+  text-align: center;
+}
+
+.hero-content p {
+  font-size: 25px;
+  margin-bottom: 40px;
+  color: var(--primary-text);
+}
+
+.hero-image {
+  width: 460px;
+  max-width: 100%;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+}
+
+/* STATISTIKY */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: var(--space-large);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--black);
+  margin-bottom: 10px;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.stat-text {
+  font-size: 20px;
+  color: var(--primary-text);
+}
+
+/* PROJEKTY */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-ultra);
+  margin-top: var(--space-xlarge);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.project-content small {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.project-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+.project-content p {
+  font-size: 20px;
+}
+
+/* O MNĚ */
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-content p {
+  font-size: 20px;
+}
+
+/* KONTAKT */
+#kontakt {
+  background-color: var(--primary-text);
+  color: var(--white);
+  padding-top: var(--space-ultra);
+  padding-bottom: 30px;
+}
+
+#info {
+  padding-bottom: var(--space-ultra);
+}
+
+#kontakt h2 {
+  color: var(--white);
+  margin-bottom: var(--space-large);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.contact-item p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.contact-item a {
+  color: var(--white);
+}
+
+/* SCROLL TO TOP V KONTAKTNÍ SEKCI */
+.kontakt-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-ultra);
+  padding: 0 30px;
+}
+
+.kontakt-footer .copyright {
+  font-size: 16px;
+  color: var(--white);
+}
+
+/* RESPONSIVITA */
+/* INTRO TEXT */
+.subtitle {
+  font-size: 40px;
+  font-weight: normal;
+  color: var(--primary-text);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  width: 66.67%;
+  margin: 0 auto;
+  margin-bottom: var(--space-large-half);
+}
+
+/* STEJNÁ MEZERA JAKO MEZI JEDNOTLIVÝMI PROJEKTY (ultra), NAVAZUJE NA SPODNÍ ODSAZENÍ SEKCE PROJEKTY */
+.other-projects-section {
+  padding-top: var(--space-medium);
+}
+
+.other-projects-label {
+  font-size: 16px;
+  color: var(--primary-text);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.other-projects {
+  width: 75%;
+  margin: 40px auto 0;
+  text-align: center;
+}
+
+.other-projects p {
+  font-size: 40px;
+  font-weight: normal;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.other-projects strong {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+  }
+
+  .logo {
+    top: 34px;
+    left: 20px;
+    font-size: 14px;
+  }
+
+  .hamburger,
+  .close-btn {
+    top: 20px;
+    right: 20px;
+  }
+
+  .hamburger {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  nav {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  main {
+    margin-top: 70px;
+  }
+
+  .container {
+    padding: 0 30px;
+  }
+
+  section {
+    padding: 40px 0;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-size: 45px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  .other-projects p {
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 30px;
+    width: 100%;
+  }
+
+  .stat-number {
+    font-size: 30px;
+  }
+
+  .mobile-menu a {
+    font-size: 30px;
+  }
+
+  .other-projects {
+    width: 100%;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .project {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .project-image {
+    order: -1;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .kontakt-footer {
+    justify-content: center;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 15px;
+  }
+
+  .logo {
+    top: 29px;
+    left: 15px;
+  }
+
+  .hamburger,
+  .close-btn {
+    top: 15px;
+    right: 15px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .kontakt-footer {
+    padding: 0 20px;
+  }
+
+  .hero-image {
+    width: 66.67%;
+  }
+
+  #kontakt {
+    padding-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  h2 {
+    font-size: 45px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  .other-projects p {
+    font-size: 30px;
+  }
+
+  p,
+  .project-content p,
+  .about-content p,
+  .contact-item p,
+  .stat-text,
+  .mobile-menu .button {
+    font-size: 16px;
+  }
+
+  .button {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  section {
+    padding: 30px 0;
+  }
+}
