@@ -99,6 +99,7 @@
     <header>
       <nav>
         <a href="#projekty">Projekty</a>
+        <a href="#sluzby">Služby</a>
         <a href="#info">O mně</a>
         <a href="#kontakt">Kontakt</a>
         <button
@@ -120,6 +121,7 @@
     <div class="mobile-menu" id="mobileMenu">
       <button class="close-btn" id="closeBtn">&times;</button>
       <a href="#projekty">Projekty</a>
+      <a href="#sluzby">Služby</a>
       <a href="#info">O mně</a>
       <a href="#kontakt">Kontakt</a>
       <button
@@ -159,7 +161,7 @@
             Pomáhám firmám vymýšlet weby a appky a zvyšovat tržby
           </p>
 
-          <div class="stats-grid" id="statsGrid">
+          <div class="stats-grid">
             <div class="stat-item">
               <div
                 class="stat-number"
@@ -202,7 +204,8 @@
         <div class="container">
           <h2>Vybrané projekty</h2>
           <p class="subtitle">
-            Pracoval jsem v produktových týmech i v agenturách
+            Mám za sebou desítky projektů od fintechu, přes energetiku až po
+            wellbeing.
           </p>
 
           <div class="projects-grid">
@@ -249,7 +252,7 @@
                 <h3>Srovnávač dluhopisů</h3>
                 <p>
                   Optimalizace portálu, přehlednější prezentace dluhopisů a
-                  zvýšení poptávek.(Klient agentury DesignDev)
+                  zvýšení poptávek. (Klient agentury DesignDev)
                 </p>
               </div>
               <div class="project-image">
@@ -263,21 +266,27 @@
         </div>
       </section>
 
-      <!-- OSTATNÍ PROJEKTY -->
-      <section class="other-projects-section">
+      <!-- SLUŽBY -->
+      <section id="sluzby">
         <div class="container">
-          <p class="other-projects-label">A desítky dalších projektů</p>
-          <div class="other-projects">
-            <p>
-              <strong>Betonpres</strong> (agentura NexGen),
-              <strong>Biofa</strong> (agentura BlueGhost),
-              <strong>BohemiaJobs, Jenda</strong> (agentura DesignDev),
-              <strong>Komerční banka</strong> (agentura Bell & Hurry),
-              <strong>Lasvit</strong> (agentura House of Řezáč),
-              <strong>NexGen, Munipolis, Thrivee</strong> (agentura DesignDev),
-              <strong>TIC Brno</strong> (agentura House of Řezáč),
-              <strong>UserUp, Veracomp, Zčech</strong>
-            </p>
+          <h2>Jak vám pomůžu</h2>
+
+          <p class="subtitle">
+            Snižuji riziko špatných rozhodnutí díky hlubokému pochopení byznysu
+            i zákazníků.
+          </p>
+
+          <div class="services-list">
+            <div class="service-tag">Produktová strategie</div>
+            <div class="service-tag">UX analýza</div>
+            <div class="service-tag">Uživatelský výzkum</div>
+            <div class="service-tag">Informační architektura</div>
+            <div class="service-tag">Wireframy</div>
+            <div class="service-tag">Interaktivní prototypy</div>
+            <div class="service-tag">Validace nápadu</div>
+            <div class="service-tag">Testování použitelnosti</div>
+            <div class="service-tag">A/B testování</div>
+            <div class="service-tag">UI design</div>
           </div>
         </div>
       </section>
@@ -285,12 +294,13 @@
       <!-- O MNĚ -->
       <section id="info">
         <div class="container">
-          <h2>Designer s byznysovým myšlením</h2>
+          <h2>Designer<br />s byznysovým myšlením</h2>
           <div class="about-content">
             <p>
               Vystudoval jsem grafický design na VUT v Brně. Časem jsem se
-              posunul k UX, výzkumu a strategii. Vyzkoušel jsem různé postupy a
-              naučil jsem se <strong>zapojovat uživatele do tvorby</strong> a
+              posunul k UX, výzkumu a strategii. Pracoval jsem v agenturách,
+              nebo přímo v produktových týmech, a vyzkoušel jsem různé postupy.
+              Naučil <strong>zapojovat uživatele do tvorby</strong> a díky tomu
               navrhovat řešení, která reálně zlepšují byznys.
             </p>
           </div>
@@ -387,8 +397,6 @@
       });
 
       // ANIMACE POČÍTÁNÍ ČÍSEL VE STATISTIKÁCH
-      const statNumbers = document.querySelectorAll(".stat-number");
-      const statsGrid = document.getElementById("statsGrid");
       const countDuration = 1600;
 
       function formatStat(value, decimals, suffix) {
@@ -419,12 +427,13 @@
         requestAnimationFrame(step);
       }
 
-      if (statsGrid) {
+      document.querySelectorAll(".stats-grid").forEach((grid) => {
+        const numbers = grid.querySelectorAll(".stat-number");
         const statsObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                statNumbers.forEach(animateStatNumber);
+                numbers.forEach(animateStatNumber);
                 statsObserver.disconnect();
               }
             });
@@ -432,8 +441,8 @@
           { threshold: 0.4 },
         );
 
-        statsObserver.observe(statsGrid);
-      }
+        statsObserver.observe(grid);
+      });
     </script>
   </body>
 </html>

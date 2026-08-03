@@ -371,7 +371,7 @@ h1 {
 }
 
 h2 {
-  font-size: 70px;
+  font-size: 60px;
   font-weight: bold;
   margin-bottom: var(--space-small);
   line-height: 1.2;
@@ -453,6 +453,24 @@ a:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   margin-top: var(--space-large);
+}
+
+/* SEZNAM SLUŽEB - "pilulky" s obrysem */
+.services-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xsmall-half);
+  margin-top: var(--space-large);
+}
+
+.service-tag {
+  font-size: 20px;
+  color: var(--primary-text);
+  border: 1px solid var(--gray-medium);
+  border-radius: 40px;
+  padding: 12px 24px;
+  white-space: nowrap;
 }
 
 .stat-item {
@@ -576,38 +594,15 @@ a:hover {
   text-align: center;
   line-height: 1.2;
   letter-spacing: -1px;
-  width: 66.67%;
+  width: 100%;
+  max-width: 760px;
   margin: 0 auto;
   margin-bottom: var(--space-large-half);
 }
 
 /* STEJNÁ MEZERA JAKO MEZI JEDNOTLIVÝMI PROJEKTY (ultra), NAVAZUJE NA SPODNÍ ODSAZENÍ SEKCE PROJEKTY */
-.other-projects-section {
+#sluzby {
   padding-top: var(--space-medium);
-}
-
-.other-projects-label {
-  font-size: 16px;
-  color: var(--primary-text);
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.other-projects {
-  width: 75%;
-  margin: 40px auto 0;
-  text-align: center;
-}
-
-.other-projects p {
-  font-size: 40px;
-  font-weight: normal;
-  letter-spacing: -1px;
-  line-height: 1.2;
-}
-
-.other-projects strong {
-  font-weight: bold;
 }
 
 @media (max-width: 768px) {
@@ -663,13 +658,8 @@ a:hover {
     font-size: 30px;
   }
 
-  .other-projects p {
-    font-size: 30px;
-  }
-
   .subtitle {
     font-size: 30px;
-    width: 100%;
   }
 
   .stat-number {
@@ -678,10 +668,6 @@ a:hover {
 
   .mobile-menu a {
     font-size: 30px;
-  }
-
-  .other-projects {
-    width: 100%;
   }
 
   .hero {
@@ -786,8 +772,8 @@ a:hover {
     font-size: 30px;
   }
 
-  .other-projects p {
-    font-size: 30px;
+  .subtitle {
+    max-width: none;
   }
 
   p,
@@ -795,6 +781,7 @@ a:hover {
   .about-content p,
   .contact-item p,
   .stat-text,
+  .service-tag,
   .mobile-menu .button {
     font-size: 16px;
   }
