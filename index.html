@@ -142,7 +142,7 @@
         <div class="container">
           <div class="hero">
             <div class="hero-content">
-              <h1>UX designér</h1>
+              <h1>U<span class="letter-cycle" data-target="X">A</span> designér</h1>
               <p>Pro komplexní weby a aplikace</p>
             </div>
             <div class="hero-image">
@@ -439,6 +439,31 @@
         );
 
         statsObserver.observe(grid);
+      });
+
+      // ANIMACE "NAČÍTÁNÍ" PÍSMENE V NADPISU - PROJEDE PÍSMENA OD A PO CÍLOVÉ PÍSMENO
+      document.querySelectorAll(".letter-cycle").forEach((el) => {
+        const target = el.dataset.target;
+        const startCode = "A".charCodeAt(0);
+        const targetCode = target.charCodeAt(0);
+        const totalSteps = targetCode - startCode;
+        const duration = 900;
+        const startTime = performance.now();
+
+        function stepLetter(now) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 2);
+          const index = Math.round(eased * totalSteps);
+          el.textContent = String.fromCharCode(startCode + index);
+
+          if (progress < 1) {
+            requestAnimationFrame(stepLetter);
+          } else {
+            el.textContent = target;
+          }
+        }
+
+        requestAnimationFrame(stepLetter);
       });
     </script>
   </body>
