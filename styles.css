@@ -30,9 +30,6 @@
 
   /* Výška fixní hlavičky - jediné místo, kde se toto číslo definuje (main margin-top i hero na to navazují) */
   --header-height: 80px;
-
-  /* O kolik fotka v hero čouhá nad foldem - jediné místo, kde se toto číslo definuje */
-  --hero-image-peek: 161px;
 }
 
 /* SPACING UTILITY TŘÍDY - pro obecné použití na libovolném prvku */
@@ -436,11 +433,11 @@ a:hover {
   text-align: center;
 }
 
-/* VYSTŘEDĚNÍ NADPISU A PODTEXTU MEZI VRCHEM OBRAZOVKY A VRCHEM FOTKY */
+/* VYSTŘEDĚNÍ NADPISU A PODTEXTU NA STŘED OBRAZOVKY. 120px REZERVA DOLE HLÍDÁ, ABY TEXT NEBYL
+   MOC BLÍZKO FOTCE - TEXT SE STÁLE STŘEDÍ, JEN V O 120px NIŽŠÍM PROSTORU. NA MOBILU SE NEŘEŠÍ
+   (VIZ MEDIA QUERY), TAM TEXT NA FOTKU NEDOSAHUJE. */
 .hero-content {
-  min-height: calc(
-    100vh - var(--header-height) - var(--hero-image-peek)
-  );
+  min-height: calc(100vh - var(--header-height) - 120px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -457,7 +454,7 @@ a:hover {
   margin-bottom: 40px;
 }
 
-/* FOTKA NAVAZUJE HNED PO HERO-CONTENT, TAKŽE JEJÍ VRCH VYJDE PŘESNĚ NA --hero-image-peek NAD FOLDEM */
+/* FOTKA NAVAZUJE HNED PO HERO-CONTENT (KTERÝ KONČÍ 120px PŘED FOLDEM) - ŽÁDNÝ MARGIN NENÍ TŘEBA */
 .hero-image {
   width: 345px;
   max-width: 100%;
@@ -501,7 +498,7 @@ a:hover {
 }
 
 .stat-number {
-  font-size: 40px;
+  font-size: 120px;
   font-weight: bold;
   color: var(--black);
   margin-bottom: 10px;
@@ -728,8 +725,9 @@ a:hover {
 }
 
 @media (max-width: 480px) {
-  :root {
-    --hero-image-peek: 70px;
+  /* NA MOBILU SE 120px REZERVA NEŘEŠÍ - TEXT SE STŘEDÍ NA CELOU VÝŠKU, FOTKA MÁ VLASTNÍ PEVNÝ ODSTUP OD FOLDU */
+  .hero-content {
+    min-height: calc(100vh - var(--header-height));
   }
 
   header {
@@ -775,6 +773,7 @@ a:hover {
 
   .hero-image {
     width: 66.67%;
+    margin-top: -70px;
   }
 
   #kontakt {
@@ -788,6 +787,10 @@ a:hover {
   }
 
   h1 {
+    font-size: 50px;
+  }
+
+  .stat-number {
     font-size: 50px;
   }
 
