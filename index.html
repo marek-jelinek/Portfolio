@@ -76,6 +76,8 @@
 
     <title>Marek Jelínek – UX & Product designer</title>
 
+    <link rel="icon" type="image/png" href="favicon.png" />
+
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -142,7 +144,12 @@
         <div class="container">
           <div class="hero">
             <div class="hero-content">
-              <h1>U<span class="letter-cycle" data-target="X">A</span> designér</h1>
+              <h1>
+                U<span class="letter-cycle" data-start="I" data-target="X"
+                  >I</span
+                >
+                designér
+              </h1>
               <p>Pro komplexní weby a aplikace</p>
             </div>
             <div class="hero-image">
@@ -168,7 +175,7 @@
               >
                 0+
               </div>
-              <div class="stat-text">Let praxe s UX/UI</div>
+              <div class="stat-text">Let praxe s designem UX/UI</div>
             </div>
             <div class="stat-item">
               <div
@@ -179,7 +186,9 @@
               >
                 0.0x
               </div>
-              <div class="stat-text">Zdvojnásobil jsem konverzní poměr</div>
+              <div class="stat-text">
+                Zdvojnásobil jsem konverze na projektu
+              </div>
             </div>
             <div class="stat-item">
               <div
@@ -190,7 +199,7 @@
               >
                 0+
               </div>
-              <div class="stat-text">Kč jsem ušetřil na vývoji</div>
+              <div class="stat-text">Dní jsem ušetřil na vývoji produktu</div>
             </div>
           </div>
         </div>
@@ -441,10 +450,10 @@
         statsObserver.observe(grid);
       });
 
-      // ANIMACE "NAČÍTÁNÍ" PÍSMENE V NADPISU - PROJEDE PÍSMENA OD A PO CÍLOVÉ PÍSMENO
+      // ANIMACE "NAČÍTÁNÍ" PÍSMENE V NADPISU - PROJEDE PÍSMENA OD POČÁTEČNÍHO PO CÍLOVÉ PÍSMENO
       document.querySelectorAll(".letter-cycle").forEach((el) => {
         const target = el.dataset.target;
-        const startCode = "A".charCodeAt(0);
+        const startCode = (el.dataset.start || "A").charCodeAt(0);
         const targetCode = target.charCodeAt(0);
         const totalSteps = targetCode - startCode;
         const duration = 900;
