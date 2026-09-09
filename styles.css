@@ -29,12 +29,6 @@
   --space-xlarge-half: 50px;
   --space-ultra-half: 75px;
 
-  /* KURZOR - místo šipky malý čtvereček. Tmavá výplň s bílým obrysem, aby byl vidět
-     Číslo "5 5" je střed čtverečku = bod, kterým se kliká. */
-  --cursor-square: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='10'%3E%3Crect%20width='10'%20height='10'%20fill='%231f1f1f'/%3E%3C/svg%3E") 5 5;
-  /* Světlá varianta pro tmavá místa (kontaktní sekce, hamburger, černé tlačítko) */
-  --cursor-square-light: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='10'%3E%3Crect%20width='10'%20height='10'%20fill='%23ffffff'/%3E%3C/svg%3E") 5 5;
-
   /* Výška fixní hlavičky - jediné místo, kde se toto číslo definuje (main margin-top i hero na to navazují) */
   --header-height: 80px;
 
@@ -122,7 +116,6 @@ html {
 }
 
 body {
-  cursor: var(--cursor-square), auto;
   font-family: Arial, Inter, sans-serif;
   background-color: var(--primary-bg);
   color: var(--primary-text);
@@ -149,7 +142,7 @@ header {
   left: 30px;
   font-weight: normal;
   font-size: 16px;
-  cursor: var(--cursor-square), pointer;
+  cursor: pointer;
   z-index: 999;
   transition: opacity 0.3s ease;
 }
@@ -190,12 +183,12 @@ body.scrolled nav {
   height: 50px;
   border-radius: 50%;
   background-color: var(--black);
-  cursor: var(--cursor-square-light), pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 6px;
+  cursor: pointer;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -232,7 +225,6 @@ body.scrolled .hamburger:hover {
 
 /* MOBILE MENU OVERLAY */
 .mobile-menu {
-  cursor: var(--cursor-square-light), auto;
   display: none;
   position: fixed;
   top: 0;
@@ -254,7 +246,6 @@ body.scrolled .hamburger:hover {
 .mobile-menu a {
   text-decoration: none;
   color: var(--white);
-  cursor: var(--cursor-square-light), pointer;
   font-size: 40px;
   font-weight: normal;
   letter-spacing: -1px;
@@ -275,7 +266,7 @@ body.scrolled .hamburger:hover {
   border: none;
   font-size: 32px;
   color: var(--white);
-  cursor: var(--cursor-square-light), pointer;
+  cursor: pointer;
   z-index: 1002;
   transition: opacity 0.3s ease;
 }
@@ -293,7 +284,7 @@ body.scrolled .hamburger:hover {
   font-weight: normal;
   border: none;
   border-radius: 40px;
-  cursor: var(--cursor-square), pointer;
+  cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
@@ -302,7 +293,6 @@ body.scrolled .hamburger:hover {
 .button-primary {
   background-color: var(--black);
   color: var(--white);
-  cursor: var(--cursor-square-light), pointer;
 }
 
 /* Obrysová varianta tlačítka - průhledné pozadí, tenký 1px okraj */
@@ -424,7 +414,6 @@ strong {
 
 a {
   color: var(--primary-text);
-  cursor: var(--cursor-square), pointer;
   text-decoration: underline;
   transition: opacity 0.3s ease;
 }
@@ -586,7 +575,6 @@ a:hover {
 
 /* KONTAKT */
 #kontakt {
-  cursor: var(--cursor-square-light), auto;
   background-color: var(--primary-text);
   color: var(--white);
   padding-top: var(--space-ultra);
@@ -622,7 +610,6 @@ a:hover {
 
 .contact-item a {
   color: var(--white);
-  cursor: var(--cursor-square-light), pointer;
 }
 
 /* SCROLL TO TOP V KONTAKTNÍ SEKCI */
