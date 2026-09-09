@@ -502,9 +502,9 @@ a:hover {
   margin-right: auto;
 }
 
-/* Tagy služeb - drobné štítky, ne tlačítka: menší písmo a těsné odsazení */
+/* Tagy služeb - drobné štítky, ne tlačítka: těsné odsazení, na T/M menší písmo */
 .service-tag {
-  font-size: 15px;
+  font-size: 20px;
   color: var(--primary-text);
   border: 1px solid var(--gray-mid-light);
   border-radius: 40px;
@@ -653,6 +653,10 @@ a:hover {
 @media (max-width: 768px) {
   .services-list {
     width: 100%;
+  }
+
+  .service-tag {
+    font-size: 15px;
   }
 
   header {
