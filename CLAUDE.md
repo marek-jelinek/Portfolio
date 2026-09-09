@@ -44,7 +44,8 @@ Osobní portfolio UX designera Marka Jelínka. One-page web, běží na **marekj
 - **Primární text:** #1F1F1F
 - **Primární pozadí:** #F8F8F8
 - **Černá:** #000000, **Bílá:** #FFFFFF
-- **Šedá světlá:** #E6E6E6, **Šedá střední:** #8C8C8C
+- **Šedá světlá:** #E6E6E6, **Šedá mezi světlou a střední:** #CCCCCC (`--gray-mid-light`,
+  linky tagů služeb), **Šedá střední:** #8C8C8C
 
 ### Písmo
 - **Rodina:** Arial, Inter (fallback sans-serif)
@@ -148,7 +149,7 @@ velká změna barvy - zmírněno na 0.6.
 
 ## Sekce webu (aktuální pořadí)
 1. **Header** - Logo (mimo hlavičku, není fixní) + menu/hamburger (fixní, viz výše)
-2. **Úvod (`#uvod`)** - H1 "Redesignér", tagline, profilová fotka. Statistiky už tu NEJSOU
+2. **Úvod (`#uvod`)** - H1 "Product designer", tagline, profilová fotka. Statistiky už tu NEJSOU
    (přesunuté do sekce Intro, viz níže).
 3. **Intro a výsledky (`#intro`)** - H2 "Řeším složité problémy", pod ním `.subtitle` text,
    pod ním statistiky (10+, 2.0x, 125 000+) s počítací animací. Dřív tu byl seznam bolestivých
@@ -164,7 +165,7 @@ velká změna barvy - zmírněno na 0.6.
    scroll-to-top (vpravo).
 
 ## Meta tagy (SEO)
-- Title: "Marek Jelínek – UX & Product designer"
+- Title: "Marek Jelínek – Product designer"
 - Description: "Přes 10 let navrhuji a zlepšuji weby a aplikace..."
 - OG tagy: title, description, image, url, type
 - Twitter Card

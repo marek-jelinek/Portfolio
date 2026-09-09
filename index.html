@@ -48,7 +48,7 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="title" content="Marek Jelínek – UX & Product designer" />
+    <meta name="title" content="Marek Jelínek – Product designer" />
     <meta
       name="description"
       content="Přes 10 let navrhuji a zlepšuji weby a aplikace. Nejčastěji dělám redesign, ale nabízím také UX audity a konzultace, výzkum a ověřování nápadů. Jednorázové projekty i dlouhodobá spolupráce."
@@ -64,7 +64,7 @@
 
     <meta
       name="twitter:title"
-      content="Marek Jelínek – UX & Product designer"
+      content="Marek Jelínek – Product designer"
     />
     <meta
       name="twitter:description"
@@ -74,7 +74,7 @@
 
     <link rel="canonical" href="https://marekjelinek.cz/" />
 
-    <title>Marek Jelínek – UX & Product designer</title>
+    <title>Marek Jelínek – Product designer</title>
 
     <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -144,18 +144,13 @@
         <div class="container">
           <div class="hero">
             <div class="hero-content">
-              <h1>
-                U<span class="letter-cycle" data-start="I" data-target="X"
-                  >I</span
-                >
-                designér
-              </h1>
+              <h1>Product designer</h1>
               <p>Pro komplexní weby a aplikace</p>
             </div>
             <div class="hero-image">
               <img
                 src="Img/Marek.png"
-                alt="Marek Jelínek - UX designer na volné noze"
+                alt="Marek Jelínek - Product designer na volné noze"
               />
             </div>
           </div>
@@ -309,6 +304,12 @@
               Naučil jsem se <strong>zapojovat uživatele do tvorby</strong> a
               díky tomu navrhovat řešení, která reálně zlepšují byznys.
             </p>
+            <button
+              class="button button-outline button-large"
+              onclick="document.getElementById('kontakt').scrollIntoView()"
+            >
+              Chci konzultaci
+            </button>
           </div>
         </div>
       </section>
@@ -448,31 +449,6 @@
         );
 
         statsObserver.observe(grid);
-      });
-
-      // ANIMACE "NAČÍTÁNÍ" PÍSMENE V NADPISU - PROJEDE PÍSMENA OD POČÁTEČNÍHO PO CÍLOVÉ PÍSMENO
-      document.querySelectorAll(".letter-cycle").forEach((el) => {
-        const target = el.dataset.target;
-        const startCode = (el.dataset.start || "A").charCodeAt(0);
-        const targetCode = target.charCodeAt(0);
-        const totalSteps = targetCode - startCode;
-        const duration = 900;
-        const startTime = performance.now();
-
-        function stepLetter(now) {
-          const progress = Math.min((now - startTime) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 2);
-          const index = Math.round(eased * totalSteps);
-          el.textContent = String.fromCharCode(startCode + index);
-
-          if (progress < 1) {
-            requestAnimationFrame(stepLetter);
-          } else {
-            el.textContent = target;
-          }
-        }
-
-        requestAnimationFrame(stepLetter);
       });
     </script>
   </body>

@@ -10,6 +10,7 @@
   --black: #000000;
   --white: #ffffff;
   --gray-light: #e6e6e6;
+  --gray-mid-light: #cccccc;
   --gray-medium: #8c8c8c;
 
   /* SPACING SYSTÉM - škála vertikálních mezer */
@@ -312,6 +313,13 @@ body.scrolled .hamburger:hover {
   border: 1px solid var(--white);
 }
 
+/* Větší varianta tlačítka - rozměry o 20 % větší než základní tlačítko,
+   písmo drží styl běžného textu (body), ne zmenšené písmo tlačítek */
+.button-large {
+  padding: 14.4px 24px;
+  font-size: 20px;
+}
+
 .button-round {
   width: 50px;
   height: 50px;
@@ -369,7 +377,7 @@ section {
 
 /* TYPOGRAFIE */
 h1 {
-  font-size: 120px;
+  font-size: 100px;
   font-weight: bold;
   margin-bottom: var(--space-xsmall);
   line-height: 1.2;
@@ -484,15 +492,23 @@ a:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-xsmall-half);
-  margin-top: var(--space-large);
+  /* Mezera k textu nad tagy - výsledných 35px (--space-large-half), protože se slévá
+     se stejně velkým spodním okrajem .subtitle */
+  margin-top: var(--space-large-half);
+  /* Na desktopu užší blok (75 % šířky) na střed - tagy se tak zalomí do víc řádků
+     a nedělají jeden dlouhý pás. Na T/M se vrací na plnou šířku (viz media query). */
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Tagy služeb - drobné štítky, ne tlačítka: menší písmo a těsné odsazení */
 .service-tag {
-  font-size: 20px;
+  font-size: 15px;
   color: var(--primary-text);
-  border: 1px solid var(--gray-medium);
+  border: 1px solid var(--gray-mid-light);
   border-radius: 40px;
-  padding: 12px 24px;
+  padding: 5px 12px;
   white-space: nowrap;
 }
 
@@ -553,6 +569,12 @@ a:hover {
 
 .about-content p {
   font-size: 20px;
+}
+
+/* Mezera mezi textem a tlačítkem = --space-small (15px z odstavce + 15px zde).
+   Odsazení sekce ke kontaktu (--space-ultra) tím zůstává nedotčené. */
+.about-content .button {
+  margin-top: 15px;
 }
 
 /* KONTAKT */
@@ -629,6 +651,10 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  .services-list {
+    width: 100%;
+  }
+
   header {
     padding: 20px;
   }
@@ -813,7 +839,6 @@ a:hover {
   .about-content p,
   .contact-item p,
   .stat-text,
-  .service-tag,
   .mobile-menu .button {
     font-size: 16px;
   }
@@ -821,6 +846,11 @@ a:hover {
   .button {
     padding: 10px 24px;
     font-size: 14px;
+  }
+
+  .button-large {
+    padding: 14.4px 24px;
+    font-size: 16px;
   }
 
   /* SPACING MEZI SEKCEMI ZVĚTŠEN CCA O 100 % (z 30px na space-large) */
