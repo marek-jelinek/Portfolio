@@ -108,7 +108,10 @@ tom, že hlavní obsah stránky je omezený na max-width 1400px na střed. Proto
 - **Logo** (vlevo nahoře) **není fixní** - je součástí normálního toku stránky (`position:
   absolute` vůči dokumentu, ne vůči oknu) a při scrollování normálně odjede pryč se stránkou.
   Není součástí hamburger menu.
-- **Desktop (D):** nahoře na stránce je vidět celé menu (odkazy + tlačítko Konzultace).
+- **Tlačítko Konzultace v menu už není** - bylo v hlavičce na D i v rozbaleném hamburger menu,
+  obojí je v `index.html` **zakomentované** (ne smazané), aby se dalo kdykoli vrátit. Roli CTA
+  převzalo tlačítko "Chci konzultaci" v sekci O mně.
+- **Desktop (D):** nahoře na stránce je vidět celé menu (jen odkazy).
   Jakmile uživatel začne scrollovat (`body.scrolled`), menu se plynule zmenší, posune a
   schová a místo něj naskočí kulatý hamburger (stejný, jaký je trvale vidět na T/M).
 - **Tablet a mobil (T/M):** hamburger je vidět vždy, celé menu s odkazy se nezobrazuje nikdy.
@@ -119,15 +122,24 @@ tom, že hlavní obsah stránky je omezený na max-width 1400px na střed. Proto
 - Otevřené menu (`.mobile-menu`) je overlay v barvě primárního textu (ne čistě černé).
 
 ### Komponenty (tlačítka)
-- **`.button-primary`** (černé s bílým textem) - definované v CSS, ale momentálně nikde v
-  HTML nepoužité. Zachovat pro budoucí použití, nemazat.
+**Na webu je momentálně jediné klasické tlačítko - CTA "Chci konzultaci" v sekci O mně -
+a to je ve stylu `.button-primary`. Obrysové varianty se nikde nepoužívají.**
+
+- **`.button-primary`** (černé s bílým textem) - jediný používaný styl tlačítka: CTA
+  "Chci konzultaci" v sekci O mně. Dřív mělo vlastní hover (změna pozadí na šedou), ten byl
+  zrušen ve prospěch jednotného hoveru (viz níže).
+- **`.button-large`** - modifikátor velikosti, přidává se k základnímu tlačítku
+  (`class="button button-primary button-large"`). Rozměry o 20 % větší než základní tlačítko
+  (padding 14,4/24px) a **velikost písma podle běžného textu**, tedy 20px na D i T a 16px na M
+  (základní tlačítka jdou na M na 14px). Používá se u CTA v sekci O mně.
 - **`.button-outline`** - obrys (1px, barva primárního textu), průhledné pozadí, text stejnou
-  barvou jako okolní texty. Používá se pro tlačítko Konzultace v hlavičce na světlém pozadí.
+  barvou jako okolní texty. **Momentálně nepoužité** - zbylo jen v zakomentovaném tlačítku
+  Konzultace v hlavičce. Zachovat, nemazat.
 - **`.button-outline-on-dark`** - stejný princip, ale bílý obrys a bílý text pro tmavé pozadí.
-  Používá se pro tlačítko Konzultace uvnitř rozbaleného hamburger menu. Velikost textu
-  přebírá základní styl `p` (20px D/T, 16px M).
+  **Momentálně nepoužité** - zbylo jen v zakomentovaném tlačítku Konzultace v hamburger menu.
+  Zachovat, nemazat.
 - **`.button-round`** (kruhové) - tlačítko scroll-to-top v patičce kontaktní sekce, bílé na
-  tmavém pozadí, zarovnané k pravému okraji stránky.
+  tmavém pozadí, zarovnané k pravému okraji stránky. Jediné další tlačítko na webu.
 - Kartičky projektů - obrázek a text vedle sebe, **bez střídání stran** (žádný cik-cak),
   na tabletu/mobilu obrázek nahoře a text pod ním.
 
@@ -136,7 +148,8 @@ Všechny interaktivní prvky (odkazy, všechna tlačítka, logo, hamburger, kř�
 mají **jednotný hover efekt** - jemné ztlumení na `opacity: 0.6` (přechod 0.3s). Sjednoceno
 z dřívějších různých hoverů (barva textu, barva pozadí) do jednoho pravidla kvůli
 konzistenci. Původně zkoušeno agresivnější `opacity: 0.25`, ale to působilo jako příliš
-velká změna barvy - zmírněno na 0.6.
+velká změna barvy - zmírněno na 0.6. Poslední zbytek starého hoveru (`.button-primary:hover`
+měnil pozadí na šedou) byl odstraněn, když se `.button-primary` začal používat.
 
 ### Animace
 - **Menu → hamburger:** při scrollování na desktopu se menu zmenší a odsune (`scale` +
@@ -159,7 +172,8 @@ velká změna barvy - zmírněno na 0.6.
    pořadí (bez střídání stran).
 5. **Ostatní projekty (`.other-projects-section`)** - text se jmény firem a agentur, velikost
    textu jako `h3` (40/30/30).
-6. **O mně (`#info`)** - text o vzdělání a zkušenosti.
+6. **O mně (`#info`)** - text o vzdělání a zkušenosti, pod ním CTA tlačítko
+   "Chci konzultaci" (`.button-primary .button-large`), které scrolluje na kontakt.
 7. **Kontakt (`#kontakt`)** - tmavé pozadí, nadpis, email/lokace/LinkedIn, v patičce copyright
    "© 2008-teď Marek Jelínek" (vlevo, rok se píše jako "teď", ne pevné datum) a tlačítko
    scroll-to-top (vpravo).

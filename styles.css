@@ -295,10 +295,6 @@ body.scrolled .hamburger:hover {
   color: var(--white);
 }
 
-.button-primary:hover {
-  background-color: var(--gray-medium);
-}
-
 /* Obrysová varianta tlačítka - průhledné pozadí, tenký 1px okraj */
 .button-outline {
   background-color: transparent;
