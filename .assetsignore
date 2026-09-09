@@ -4,3 +4,7 @@
 CLAUDE.md
 wrangler.toml
 _zaloha
+design-system.html
+.vscode
+.gitignore
+.assetsignore
