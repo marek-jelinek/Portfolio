@@ -29,6 +29,12 @@
   --space-xlarge-half: 50px;
   --space-ultra-half: 75px;
 
+  /* Vzdálenost od okraje okna pro všechny prvky v rozích: logo, menu, hamburger,
+     křížek, copyright a tlačítko nahoru. Jedno číslo pro všechna zařízení. */
+  --edge-space: 15px;
+  /* Výjimka pro textové prvky u boků: logo (vlevo), odkazy menu (vpravo) a copyright (vlevo) */
+  --edge-space-text: 30px;
+
   /* Výška fixní hlavičky - jediné místo, kde se toto číslo definuje (main margin-top i hero na to navazují) */
   --header-height: 80px;
 
@@ -129,7 +135,8 @@ header {
   left: 0;
   right: 0;
   background-color: transparent;
-  padding: 20px 30px;
+  height: calc(var(--edge-space) * 2 + 50px);
+  padding: 0 var(--edge-space-text);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -138,8 +145,11 @@ header {
 
 .logo {
   position: absolute;
-  top: 29px;
-  left: 30px;
+  top: var(--edge-space);
+  left: var(--edge-space-text);
+  height: 50px;
+  display: flex;
+  align-items: center;
   font-weight: normal;
   font-size: 16px;
   cursor: pointer;
@@ -177,8 +187,8 @@ body.scrolled nav {
 
 .hamburger {
   position: fixed;
-  top: 20px;
-  right: 30px;
+  top: var(--edge-space);
+  right: var(--edge-space);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -255,8 +265,8 @@ body.scrolled .hamburger:hover {
 
 .close-btn {
   position: fixed;
-  top: 20px;
-  right: 30px;
+  top: var(--edge-space);
+  right: var(--edge-space);
   width: 50px;
   height: 50px;
   display: flex;
@@ -578,7 +588,7 @@ a:hover {
   background-color: var(--primary-text);
   color: var(--white);
   padding-top: var(--space-ultra);
-  padding-bottom: 30px;
+  padding-bottom: var(--edge-space);
 }
 
 #info {
@@ -618,7 +628,7 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   margin-top: var(--space-ultra);
-  padding: 0 30px;
+  padding: 0 var(--edge-space) 0 var(--edge-space-text);
 }
 
 .kontakt-footer .copyright {
@@ -655,20 +665,8 @@ a:hover {
     font-size: 15px;
   }
 
-  header {
-    padding: 20px;
-  }
-
   .logo {
-    top: 34px;
-    left: 20px;
     font-size: 14px;
-  }
-
-  .hamburger,
-  .close-btn {
-    top: 20px;
-    right: 20px;
   }
 
   .hamburger {
@@ -746,27 +744,13 @@ a:hover {
   .kontakt-footer {
     justify-content: center;
     margin-top: 40px;
+    padding: 0 var(--edge-space);
   }
 }
 
 @media (max-width: 480px) {
   :root {
     --hero-image-peek: 70px;
-  }
-
-  header {
-    padding: 15px;
-  }
-
-  .logo {
-    top: 29px;
-    left: 15px;
-  }
-
-  .hamburger,
-  .close-btn {
-    top: 15px;
-    right: 15px;
   }
 
   /* NA MOBILU JE HAMBURGER VÝCHOZE BEZ KOLEČKA, KOLEČKO SE OBJEVÍ AŽ PO ROZSCROLLOVÁNÍ */
@@ -792,7 +776,7 @@ a:hover {
 
   .kontakt-footer {
     justify-content: space-between;
-    padding: 0 20px;
+    padding-left: var(--edge-space-text);
   }
 
   .hero-image {
@@ -801,7 +785,6 @@ a:hover {
 
   #kontakt {
     padding-top: var(--space-large);
-    padding-bottom: 20px;
   }
 
   /* MENŠÍ MEZERA PŘED KONTAKTNÍ SEKCÍ NA MOBILU - stejná jako mezi ostatními sekcemi */

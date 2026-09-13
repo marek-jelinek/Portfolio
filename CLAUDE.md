@@ -102,7 +102,11 @@ třídy se momentálně nikde nepoužívají, ale mají v kódu zůstat pro budo
 Hlavička (`header`) a patička kontaktní sekce (`.kontakt-footer` - copyright + tlačítko
 nahoru) se **záměrně roztahují až k pravému/levému okraji okna prohlížeče**, nezávisle na
 tom, že hlavní obsah stránky je omezený na max-width 1400px na střed. Proto nejsou uvnitř
-`.container`, ale mají vlastní horizontální padding (30px D/T, 20px M).
+`.container`, ale mají vlastní odsazení od okraje okna.
+**Všechny prvky v rozích (logo, menu, hamburger, křížek, copyright, tlačítko nahoru) mají
+jednu společnou vzdálenost od okraje: `--edge-space` (15px na D, T i M).** V patičce platí
+i pro spodní okraj. **Výjimka:** textové prvky u boků - logo (vlevo), odkazy menu (vpravo)
+a copyright (vlevo) - mají od boku `--edge-space-text` (30px); svisle se drží společné osy / spodku. Logo, odkazy menu a hamburger leží v hlavičce na jedné středové ose.
 
 ### Menu a hlavička
 - **Logo** (vlevo nahoře) **není fixní** - je součástí normálního toku stránky (`position:
