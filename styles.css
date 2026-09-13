@@ -864,3 +864,32 @@ a:hover {
     gap: var(--space-xlarge);
   }
 }
+
+/* EFEKT: ČTVEREČKOVÝ KURZOR
+   Místo šipky malý čtvereček, který kreslí JavaScript (konec index.html).
+   Režim míchání "difference" = barvu si dopočítá z toho, co je pod ním:
+   na světlém pozadí je tmavý, na tmavém bílý - bez zpoždění a bez seznamu tmavých ploch.
+   Zapne se jen na zařízeních s myší (na dotykových nic). Pro odstranění smazat tento
+   blok a blok "ČTVEREČKOVÝ KURZOR" v index.html. */
+html.has-cursor-square,
+html.has-cursor-square * {
+  cursor: none !important;
+}
+
+.cursor-square {
+  position: fixed;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--white);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  will-change: transform;
+}
+
+.cursor-square.is-visible {
+  opacity: 1;
+}

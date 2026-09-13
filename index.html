@@ -455,6 +455,30 @@
 
         statsObserver.observe(grid);
       });
+
+      // ČTVEREČKOVÝ KURZOR - čtvereček jde přímo za myší (bez vyhlazování, ať nezaostává).
+      // Jen pro zařízení s myší. Vzhled a odstranění viz styles.css, blok "EFEKT: ČTVEREČKOVÝ KURZOR".
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        const cursorSquare = document.createElement("div");
+        cursorSquare.className = "cursor-square";
+        cursorSquare.setAttribute("aria-hidden", "true");
+        document.body.appendChild(cursorSquare);
+        document.documentElement.classList.add("has-cursor-square");
+
+        document.addEventListener(
+          "pointermove",
+          (e) => {
+            cursorSquare.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+            cursorSquare.classList.add("is-visible");
+          },
+          { passive: true },
+        );
+
+        // Když myš opustí okno prohlížeče, čtvereček schovat
+        document.documentElement.addEventListener("mouseleave", () => {
+          cursorSquare.classList.remove("is-visible");
+        });
+      }
     </script>
   </body>
 </html>
