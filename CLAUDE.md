@@ -50,7 +50,9 @@ Osobní portfolio UX designera Marka Jelínka. One-page web, běží na **marekj
 
 ## Obrázky
 - `Img/Marek.png` - Profilová fotka (600×755 px, zachovat poměr stran, nikdy neořezávat)
-- `Img/Donio-S.png`, `Img/RegioJet-2S.png`, `Img/Srovnavac-S.png` - obrázky projektů
+- `Img/Donio-porovnani.png`, `Img/RegioJet-new.png`, `Img/Srovnavac-new.png` - obrázky projektů
+  (1160×825 px; staré `Donio-S.png`, `RegioJet-2S.png`, `Srovnavac-S.png` jsou smazané ze
+  složky, ale dají se obnovit z historie v gitu)
 
 ## Design systém
 
@@ -187,11 +189,11 @@ měnil pozadí na šedou) byl odstraněn, když se `.button-primary` začal pou�
    bodů se šipkami ➔ (`.pain-points`) - ten byl zrušen a nahrazen jednou větou.
 4. **Projekty (`#projekty`)** - H2 "Vybrané projekty" (dřív "Vybrané práce"). Podtext
    `.subtitle` ("Mám za sebou desítky projektů...") je **zakomentovaný** (skrytý, ne smazaný).
-   3 projekty (Donio, RegioJet, Srovnávač dluhopisů), obrázky a texty v jednom pořadí
+   3 projekty (Donio, Srovnávač dluhopisů, RegioJet), obrázky a texty v jednom pořadí
    (bez střídání stran). Na D je text 1/3 a obrázek 2/3 šířky (`grid-template-columns: 1fr 2fr`).
    Pod obrázkem může být šedý popisek `.project-caption` (15px na všech zařízeních,
    `--gray-medium`, 15px pod obrázkem, šířka jako obrázek) - zatím jen u Donia.
-   Donio používá obrázek `Img/Donio-porovnani.png` (starý `Donio-S.png` zůstal ve složce).
+   Donio používá obrázek `Img/Donio-porovnani.png`.
 5. **Ostatní projekty (`.other-projects-section`)** - text se jmény firem a agentur, velikost
    textu jako `h3` (40/30/30).
 6. **O mně (`#info`)** - text o vzdělání a zkušenosti, pod ním CTA tlačítko
