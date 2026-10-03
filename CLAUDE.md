@@ -192,7 +192,7 @@ měnil pozadí na šedou) byl odstraněn, když se `.button-primary` začal pou�
    3 projekty (Donio, Srovnávač dluhopisů, RegioJet), obrázky a texty v jednom pořadí
    (bez střídání stran). Na D je text 1/3 a obrázek 2/3 šířky (`grid-template-columns: 1fr 2fr`).
    Pod obrázkem může být šedý popisek `.project-caption` (15px na všech zařízeních,
-   `--gray-medium`, 15px pod obrázkem, šířka jako obrázek) - zatím jen u Donia.
+   `--gray-medium`, 15px pod obrázkem, šířka jako obrázek, zarovnaný na střed) - u všech tří projektů.
    Donio používá obrázek `Img/Donio-porovnani.png`.
 5. **Ostatní projekty (`.other-projects-section`)** - text se jmény firem a agentur, velikost
    textu jako `h3` (40/30/30).

@@ -567,6 +567,7 @@ a:hover {
 .project-caption {
   font-size: 15px;
   line-height: 1.5;
+  text-align: center;
   color: var(--gray-medium);
   margin-top: var(--space-xsmall);
   margin-bottom: 0;
