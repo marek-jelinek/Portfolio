@@ -546,7 +546,7 @@ a:hover {
 
 .project {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr; /* text 1/3, obrázek 2/3 */
   gap: 60px;
   align-items: center;
 }
@@ -557,9 +557,19 @@ a:hover {
 }
 
 .project-image img {
+  display: block; /* bez mezery pod obrázkem, aby popisek seděl přesně 15px pod ním */
   max-width: 100%;
   height: auto;
   border-radius: 0;
+}
+
+/* Popisek pod obrázkem projektu - stejná šířka jako obrázek, 15px na všech zařízeních */
+.project-caption {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--gray-medium);
+  margin-top: var(--space-xsmall);
+  margin-bottom: 0;
 }
 
 .project-content p {

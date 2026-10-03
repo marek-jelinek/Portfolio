@@ -27,6 +27,20 @@ Osobní portfolio UX designera Marka Jelínka. One-page web, běží na **marekj
     potřeba e-mail (např. jméno@marekjelinek.cz), je potřeba buď znovu aktivovat mail hosting
     u WEDOSu, nebo použít externí službu (Google Workspace, Zoho Mail...)
   - Google Search Console ověření běží přes DNS TXT záznam (nezávislé na obsahu webu)
+  - **`www.marekjelinek.cz` funguje přes Redirect Rule v Cloudflare** (Rules → Redirect Rules),
+    ne přes kód webu. Pravidlo: hostname = `www.marekjelinek.cz` → dynamické přesměrování
+    `concat("https://marekjelinek.cz", http.request.uri.path)`, kód **301**, zachování query
+    stringu. Drží se tím jedna kanonická adresa (v `index.html` je i `<link rel="canonical">`).
+    - **Proč to tak je:** Worker je zaregistrovaný jen na hostname `marekjelinek.cz`. Požadavek
+      přicházející jako `www...` se netrefil do žádného workeru, Cloudflare pak hledal běžný
+      webserver, žádný nenašel a vracel chybu **522**. Redirect Rule požadavek zachytí dřív.
+    - **DNS záznam `www` (CNAME → `marekjelinek.cz`, proxovaný) musí zůstat.** Kdyby se smazal,
+      `www` přestane existovat a přesměrování nemá co zachytit.
+    - Pravidlo se **nedá vytvořit ani číst přes `wrangler`/API** - OAuth token z `wrangler login`
+      má na zónu jen právo čtení. Změny pravidel a DNS dělá uživatel v Cloudflare dashboardu.
+  - **Úklid DNS (září 2026):** smazány mrtvé záznamy `ftp`, `imap`, `pop3`, `smtp` po starém
+    WEDOS hostingu (cílové servery už neexistovaly). Doména nemá žádný MX záznam, takže e-mail
+    opravdu nikam nechodí. Smazání DNS záznamů v Cloudflare nemá vliv na registraci u WEDOSu.
 
 ## Analytika (kódy přenesené ze starého webu)
 - **Google Analytics 4:** G-7DKJVE3JKQ
@@ -171,9 +185,13 @@ měnil pozadí na šedou) byl odstraněn, když se `.button-primary` začal pou�
 3. **Intro a výsledky (`#intro`)** - H2 "Řeším složité problémy", pod ním `.subtitle` text,
    pod ním statistiky (10+, 2.0x, 125 000+) s počítací animací. Dřív tu byl seznam bolestivých
    bodů se šipkami ➔ (`.pain-points`) - ten byl zrušen a nahrazen jednou větou.
-4. **Projekty (`#projekty`)** - H2 "Vybrané projekty" (dřív "Vybrané práce") + `.subtitle`
-   podtext, 3 projekty (Donio, RegioJet, Srovnávač dluhopisů), obrázky a texty v jednom
-   pořadí (bez střídání stran).
+4. **Projekty (`#projekty`)** - H2 "Vybrané projekty" (dřív "Vybrané práce"). Podtext
+   `.subtitle` ("Mám za sebou desítky projektů...") je **zakomentovaný** (skrytý, ne smazaný).
+   3 projekty (Donio, RegioJet, Srovnávač dluhopisů), obrázky a texty v jednom pořadí
+   (bez střídání stran). Na D je text 1/3 a obrázek 2/3 šířky (`grid-template-columns: 1fr 2fr`).
+   Pod obrázkem může být šedý popisek `.project-caption` (15px na všech zařízeních,
+   `--gray-medium`, 15px pod obrázkem, šířka jako obrázek) - zatím jen u Donia.
+   Donio používá obrázek `Img/Donio-porovnani.png` (starý `Donio-S.png` zůstal ve složce).
 5. **Ostatní projekty (`.other-projects-section`)** - text se jmény firem a agentur, velikost
    textu jako `h3` (40/30/30).
 6. **O mně (`#info`)** - text o vzdělání a zkušenosti, pod ním CTA tlačítko
