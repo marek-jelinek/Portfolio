@@ -58,7 +58,8 @@ Osobní portfolio UX designera Marka Jelínka. One-page web, běží na **marekj
 
 ### Barvy
 - **Primární text:** #1F1F1F
-- **Primární pozadí:** #F8F8F8
+- **Primární pozadí:** #FFFFFF (dřív #F8F8F8)
+- **Pozadí sekce O mně:** #F4F4F4 (`--section-bg-alt`, odděluje ji od sekce Služby)
 - **Černá:** #000000, **Bílá:** #FFFFFF
 - **Šedá světlá:** #E6E6E6, **Šedá mezi světlou a střední:** #CCCCCC (`--gray-mid-light`,
   linky tagů služeb), **Šedá střední:** #8C8C8C
@@ -70,13 +71,14 @@ Osobní portfolio UX designera Marka Jelínka. One-page web, běží na **marekj
 - Řádkování (line-height) u velkých/nadpisových stylů: **120 %**
 - Řádkování u běžného textu (`p`): **150 %**
 - Prostrkání (letter-spacing) u velkých textů: **-1px až -2px** (u H1 -2px)
-- Styl `.subtitle` (velký centrovaný "podnadpisový" text): **40px na D, 30px na T i M**
-  - Používá se: text pod "Řeším složité problémy", text pod "Vybrané projekty"
-- Stejnou velikost jako `.subtitle` (40/30/30) mají i:
-  - `.stat-number` (čísla ve statistikách)
+- Styl `.subtitle` (centrovaný "podnadpisový" text): **20px na D, T i M**, řádkování 150 %
+  (dřív 40/30/30 a řádkování 120 %; zmenšeno, když se do Služeb dal delší text)
+  - Používá se: text pod "Jak vám pomůžu" (Služby); pod "Vybrané projekty" je zakomentovaný
+- `.stat-number` (čísla ve statistikách): **36px na D**, 30px na T, 50px na M
+- Původní velikost `.subtitle` (40/30/30) mají dál:
   - položky v rozbaleném hamburger menu (`.mobile-menu a`) - **vlastní třída**, ne přímo
     `.subtitle` (na přání: "stejná velikost, ale nepoužívej stejný styl")
-- Velikost stylu `h3` (40px D, 30px T/M) má i text v sekci "Ostatní projekty"
+- Velikost stylu `h3` (36px D, 30px T/M) má i text v sekci "Ostatní projekty"
   (`.other-projects p`)
 
 ### Breakpointy (zkratky používané v zadáních)
@@ -195,7 +197,7 @@ měnil pozadí na šedou) byl odstraněn, když se `.button-primary` začal pou�
    `--gray-medium`, 15px pod obrázkem, šířka jako obrázek, zarovnaný na střed) - u všech tří projektů.
    Donio používá obrázek `Img/Donio-porovnani.png`.
 5. **Ostatní projekty (`.other-projects-section`)** - text se jmény firem a agentur, velikost
-   textu jako `h3` (40/30/30).
+   textu jako `h3` (36/30/30).
 6. **O mně (`#info`)** - text o vzdělání a zkušenosti, pod ním CTA tlačítko
    "Chci konzultaci" (`.button-primary .button-large`), které scrolluje na kontakt.
 7. **Kontakt (`#kontakt`)** - tmavé pozadí, nadpis, email/lokace/LinkedIn, v patičce copyright
