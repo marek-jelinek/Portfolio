@@ -109,6 +109,11 @@ CSS proměnné v `:root`, používat vždy tyto, nezadávat mezery napevno v px:
   má vlastní `padding-top: var(--space-medium)`, který spolu se standardním spodním
   odsazením sekce Projekty dá dohromady přesně ultra
 - Mezi kontaktní mřížkou a patičkou (`.kontakt-footer`): ultra (150px)
+- Sekce Služby a O mně: na D mezera nahoře i dole ultra (150px), stejně jako začátek kontaktu
+  (u Služeb se horní mezera skládá ze spodního odsazení Projektů 100 + vlastních 50).
+  Na T je to všude 100px (včetně začátku kontaktu), na M 70px.
+- Statistiky (`#intro`) na D: fotka → čísla 136px, čísla → nadpis "Vybrané projekty" 160px
+  (zmenšeno o 20 % z 170/200). Na T/M beze změny.
 - H1 margin-bottom: xsmall, H2: small, H3: xsmall
 
 ### Šířkové utility třídy
@@ -163,7 +168,7 @@ a to je ve stylu `.button-primary`. Obrysové varianty se nikde nepoužívají.*
 - **`.button-round`** (kruhové) - tlačítko scroll-to-top v patičce kontaktní sekce, bílé na
   tmavém pozadí, zarovnané k pravému okraji stránky. Jediné další tlačítko na webu.
 - Kartičky projektů - obrázek a text vedle sebe, **bez střídání stran** (žádný cik-cak),
-  na tabletu/mobilu obrázek nahoře a text pod ním.
+  na tabletu obrázek nahoře a text pod ním, na mobilu text nahoře a obrázek (s popiskem) pod ním.
 
 ### Hover efekt
 Všechny interaktivní prvky (odkazy, všechna tlačítka, logo, hamburger, křížek zavření)

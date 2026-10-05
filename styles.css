@@ -486,6 +486,13 @@ a:hover {
 }
 
 /* STATISTIKY */
+/* Mezery u statistik zmenšené o 20 % (jen D): fotka → čísla 170 → 136px,
+   čísla → nadpis Vybrané projekty 200 → 160px */
+#intro {
+  padding-top: calc(0.8 * (var(--space-xlarge) + var(--space-large)) - var(--space-large));
+  padding-bottom: calc(0.8 * 2 * var(--space-xlarge) - var(--space-xlarge));
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -667,9 +674,37 @@ a:hover {
 /* STEJNÁ MEZERA JAKO MEZI JEDNOTLIVÝMI PROJEKTY (ultra), NAVAZUJE NA SPODNÍ ODSAZENÍ SEKCE PROJEKTY */
 #sluzby {
   padding-top: var(--space-medium);
+  padding-bottom: var(--space-ultra);
+}
+
+/* Sekce Služby a O mně mají nahoře i dole stejnou mezeru (ultra) jako začátek kontaktu */
+#info {
+  padding-top: var(--space-ultra);
 }
 
 @media (max-width: 768px) {
+  /* T: Služby, O mně i začátek kontaktu mají nahoře i dole stejnou mezeru 100px (xlarge).
+     U Služeb se horní mezera skládá ze spodního odsazení Projektů (40px) + vlastního. */
+  #sluzby {
+    padding-top: calc(var(--space-xlarge) - 40px);
+    padding-bottom: var(--space-xlarge);
+  }
+
+  #info {
+    padding-top: var(--space-xlarge);
+    padding-bottom: var(--space-xlarge);
+  }
+
+  #kontakt {
+    padding-top: var(--space-xlarge);
+  }
+
+  /* Statistiky na T/M beze změny (zmenšení o 20 % platí jen pro D) */
+  #intro {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
   .services-list {
     width: 100%;
   }
@@ -802,7 +837,23 @@ a:hover {
 
   /* MENŠÍ MEZERA PŘED KONTAKTNÍ SEKCÍ NA MOBILU - stejná jako mezi ostatními sekcemi */
   #info {
+    padding-top: var(--space-large);
     padding-bottom: var(--space-large);
+  }
+
+  #sluzby {
+    padding-top: var(--space-medium);
+    padding-bottom: var(--space-large);
+  }
+
+  #intro {
+    padding-top: var(--space-large);
+    padding-bottom: var(--space-large);
+  }
+
+  /* Na mobilu je text projektu nad obrázkem (na tabletu zůstává obrázek nahoře) */
+  .project-image {
+    order: 0;
   }
 
   h1 {
