@@ -74,7 +74,7 @@ Osobní portfolio UX designera Marka Jelínka. One-page web, běží na **marekj
 - Styl `.subtitle` (centrovaný "podnadpisový" text): **20px na D, T i M**, řádkování 150 %
   (dřív 40/30/30 a řádkování 120 %; zmenšeno, když se do Služeb dal delší text)
   - Používá se: text pod "Jak vám pomůžu" (Služby); pod "Vybrané projekty" je zakomentovaný
-- `.stat-number` (čísla ve statistikách): **36px na D**, 30px na T, 50px na M
+- `.stat-number` (čísla ve statistikách): **60px na D**, 30px na T, 50px na M
 - Původní velikost `.subtitle` (40/30/30) mají dál:
   - položky v rozbaleném hamburger menu (`.mobile-menu a`) - **vlastní třída**, ne přímo
     `.subtitle` (na přání: "stejná velikost, ale nepoužívej stejný styl")
