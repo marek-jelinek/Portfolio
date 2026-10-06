@@ -486,11 +486,11 @@ a:hover {
 }
 
 /* STATISTIKY */
-/* Mezery u statistik zmenšené o 20 % (jen D): fotka → čísla 170 → 136px,
-   čísla → nadpis Vybrané projekty 200 → 160px */
+/* Mezery u statistik (jen D): fotka → čísla 136px (o 20 % méně než původních 170),
+   čísla → nadpis Vybrané projekty 192px (160px + 20 %) */
 #intro {
   padding-top: calc(0.8 * (var(--space-xlarge) + var(--space-large)) - var(--space-large));
-  padding-bottom: calc(0.8 * 2 * var(--space-xlarge) - var(--space-xlarge));
+  padding-bottom: calc(1.2 * 0.8 * 2 * var(--space-xlarge) - var(--space-xlarge));
 }
 
 .stats-grid {
@@ -672,8 +672,9 @@ a:hover {
 }
 
 /* STEJNÁ MEZERA JAKO MEZI JEDNOTLIVÝMI PROJEKTY (ultra), NAVAZUJE NA SPODNÍ ODSAZENÍ SEKCE PROJEKTY */
+/* Horní mezera Služeb na D: 100 (spodek Projektů) + 80 = 180px (150px + 20 %) */
 #sluzby {
-  padding-top: var(--space-medium);
+  padding-top: calc(1.2 * var(--space-ultra) - var(--space-xlarge));
   padding-bottom: var(--space-ultra);
 }
 

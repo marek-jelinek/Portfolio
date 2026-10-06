@@ -110,10 +110,11 @@ CSS proměnné v `:root`, používat vždy tyto, nezadávat mezery napevno v px:
   odsazením sekce Projekty dá dohromady přesně ultra
 - Mezi kontaktní mřížkou a patičkou (`.kontakt-footer`): ultra (150px)
 - Sekce Služby a O mně: na D mezera nahoře i dole ultra (150px), stejně jako začátek kontaktu
-  (u Služeb se horní mezera skládá ze spodního odsazení Projektů 100 + vlastních 50).
+  (u Služeb je horní mezera na D 180px = spodní odsazení Projektů 100 + vlastních 80;
+  zvětšeno o 20 % ze 150).
   Na T je to všude 100px (včetně začátku kontaktu), na M 70px.
-- Statistiky (`#intro`) na D: fotka → čísla 136px, čísla → nadpis "Vybrané projekty" 160px
-  (zmenšeno o 20 % z 170/200). Na T/M beze změny.
+- Statistiky (`#intro`) na D: fotka → čísla 136px (zmenšeno o 20 % ze 170),
+  čísla → nadpis "Vybrané projekty" 192px (160 + 20 %). Na T/M beze změny.
 - H1 margin-bottom: xsmall, H2: small, H3: xsmall
 
 ### Šířkové utility třídy
